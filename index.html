@@ -3,180 +3,162 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Romain Missoum</title>
+    <title>Romain Missoum – Portfolio Premium</title>
     <style>
-        /* Style de base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #121212;
-            color: white;
+            font-family: 'Inter', sans-serif;
+            background: #0b0b0b;
+            color: #eaeaea;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
-
+        /* HEADER */
         header {
-            background: #1e1e1e;
-            padding: 30px 0;
-            text-align: center;
-        }
-
-        .header-content {
+            height: 60vh;
+            background: linear-gradient(135deg, #101010, #1e1e1e);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            text-align: center;
+            position: relative;
         }
 
-        .header-content h1 {
-            font-size: 2.5em;
+        .profile-img {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            border: 4px solid #ffcc00;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 0 25px rgba(255, 204, 0, 0.4);
+            transition: transform 0.4s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 3rem;
             color: #ffcc00;
+            letter-spacing: 1px;
             margin-bottom: 10px;
         }
 
-        .header-content p {
-            font-size: 1.2em;
-            margin: 2px 0;
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
         }
 
-        .header-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid #ffcc00;
-            object-fit: cover;
-        }
-
-        #projects, #skills, #education, #contact {
-            margin-top: 50px;
+        /* CONTAINERS */
+        .container {
+            width: 80%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 0;
         }
 
         h2 {
+            font-size: 2.2rem;
+            color: #ffcc00;
+            margin-bottom: 25px;
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 2em;
         }
 
+        /* SECTIONS */
+        .section {
+            background: #161616;
+            padding: 40px;
+            border-radius: 18px;
+            margin-bottom: 60px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.4);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 60px rgba(255, 204, 0, 0.15);
+        }
+
+        /* PROJECTS */
         .project, .skill, .education {
-            background-color: #2a2a2a;
-            margin: 20px 0;
+            background: #202020;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .project:hover, .skill:hover {
+            background: #262626;
         }
 
         a {
             color: #ffcc00;
             text-decoration: none;
+            font-weight: 500;
         }
+        a:hover { color: #ff8800; }
 
-        a:hover {
-            color: #ff6600;
-        }
-
+        /* FOOTER */
         footer {
             text-align: center;
-            padding: 10px;
-            background: #1e1e1e;
-            margin-top: 50px;
-        }
-
-        .about-section {
-            margin-top: 50px;
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .about-text {
-            flex: 1;
-            min-width: 250px;
+            padding: 25px;
+            background: #101010;
+            margin-top: 40px;
+            color: #666;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="container header-content">
-        <img src="profile.jpg" alt="Photo de Romain Missoum" class="header-photo" />
-        <div>
-            <h1>Missoum Romain</h1>
-            <p>19 ans</p>
-            <p>Étudiant en informatique</p>
-        </div>
-    </div>
+    <img src="profile.jpg" alt="Photo de profil" class="profile-img" />
+    <h1>Romain Missoum</h1>
+    <p>Étudiant en Informatique • Développement & Systèmes</p>
 </header>
 
-<section id="about" class="container about-section">
-    <h2>À propos de moi</h2>
-    <div class="about-content">
-        <div class="about-text">
-            <p>Bonjour, je suis passionné par le développement d'applications. Je souhaite devenir développeur pour une entreprise qui me paiera plus de 3 centimes l'heure.</p>
+<div class="container">
+
+    <section id="about" class="section">
+        <h2>À propos de moi</h2>
+        <p>Passionné par l’ingénierie logicielle, j'oriente mon travail vers des solutions fiables, maintenables et adaptées à des environnements professionnels exigeants. J’accorde une importance particulière aux systèmes robustes, aux environnements Linux et à la production de code propre et documenté.</p>
+    </section>
+
+    <section id="projects" class="section">
+        <h2>Projets</h2>
+        <div class="project">
+            <h3>Installation d'une machine virtuelle Debian 12</h3>
+            <p>Réalisation d'un guide complet en anglais détaillant l'installation d'une VM Debian 12 ainsi que la configuration initiale du système.</p>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="projects" class="container">
-    <h2>Projets</h2>
-    <div class="project">
-        <h3>Installation d'une machine virtuelle Debian 12</h3>
-        <p>Création d’un tutoriel en anglais pour guider l’installation d’une machine virtuelle Debian 12.</p>
-        <p><strong>Compétences utilisées :</strong> Identifier les composants matériels et logiciels, Installer et configurer un système d’exploitation, Rédiger une documentation technique en anglais.</p>
-    </div>
-</section>
+    <section id="skills" class="section">
+        <h2>Compétences</h2>
+        <div class="skill"><h3>Développement Web</h3><p>HTML, CSS</p></div>
+        <div class="skill"><h3>Programmation</h3><p>Python, Java, JavaFX</p></div>
+        <div class="skill"><h3>Bases de données</h3><p>PostgreSQL, MySQL</p></div>
+        <div class="skill"><h3>Administration Système</h3><p>Linux, Virtualisation, Environnements serveurs</p></div>
+        <div class="skill"><h3>Rédaction Technique</h3><p>Documentation en anglais</p></div>
+    </section>
 
-<section id="skills" class="container">
-    <h2>Compétences</h2>
-    <div class="skill">
-        <h3>Développement Web</h3>
-        <p>HTML, CSS</p>
-    </div>
-    <div class="skill">
-        <h3>Programmation</h3>
-        <p>Python, Java, JavaFx</p>
-    </div>
-    <div class="skill">
-        <h3>Base de données</h3>
-        <p>PostgreSQL, MySQL</p>
-    </div>
-    <div class="skill">
-        <h3>Administration Système</h3>
-        <p>Identifier les composants matériels et logiciels, Installer et configurer un système d’exploitation</p>
-    </div>
-    <div class="skill">
-        <h3>Rédaction technique</h3>
-        <p>Rédiger une documentation technique en anglais</p>
-    </div>
-</section>
+    <section id="education" class="section">
+        <h2>Parcours</h2>
+        <div class="education"><h3>Baccalauréat – Spécialités Mathématiques & NSI</h3></div>
+    </section>
 
-<section id="education" class="container">
-    <h2>Parcours</h2>
-    <div class="education">
-        <h3>Baccalauréat spécialité Maths et NSI</h3>
-    </div>
-</section>
+    <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p><a href="https://fr.linkedin.com/in/romain-missoum-9ba32a339">LinkedIn</a></p>
+    </section>
 
-<section id="contact" class="container">
-    <h2>Contact</h2>
-    <p><a href="https://fr.linkedin.com/in/romain-missoum-9ba32a339">LinkedIn</a></p>
-</section>
+</div>
 
 <footer>
-    <p>&copy; 2025 Romain Missoum. Tous droits réservés.</p>
+    <p>&copy; 2025 Romain Missoum – Portfolio Premium</p>
 </footer>
 
 </body>
