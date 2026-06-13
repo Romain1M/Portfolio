@@ -1,23 +1,26 @@
 [
   {
-    "category": "Développement Web",
-    "skills": ["HTML", "CSS"]
+    "category": "Back-end",
+    "skills": ["Java", "JavaFX", "Spring Boot", "PHP", "Symfony", "Python", "C++"]
   },
   {
-    "category": "Programmation",
-    "skills": ["Python", "Java", "JavaFX"]
+    "category": "Front-end",
+    "skills": ["Angular", "HTML", "CSS", "JavaScript", "Twig"]
   },
   {
-    "category": "Base de données",
-    "skills": ["PostgreSQL", "MySQL"]
+    "category": "Bases de données",
+    "skills": ["PostgreSQL", "MySQL", "XML"]
   },
   {
-    "category": "Administration Système",
-    "skills": ["Composants matériels/logiciels", "Installation OS", "Configuration système"]
+    "category": "Outils & IDE",
+    "skills": ["Git", "GitLab", "VS Code", "IntelliJ IDEA", "SceneBuilder", "Draw.io", "Jira"]
   },
   {
-    "category": "Rédaction technique",
-    "skills": ["Documentation en anglais"]
+    "category": "Compétences transversales",
+    "skills": ["Travail en équipe", "Autonomie", "Apprentissage rapide", "Documentation technique", "Méthode agile", "Anglais technique"]
+  },
+  {
+    "category": "Systèmes & Outils",
+    "skills": ["Git", "GitLab", "VS Code", "IntelliJ IDEA", "SceneBuilder", "Draw.io", "Jira", "VirtualBox", "Installation Linux/Debian"]
   }
 ]
-

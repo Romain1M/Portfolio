@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Medievent - Romain Missoum">
+  <section class="container project-detail">
+    <a href="/projects" class="back-link">← Retour aux projets</a>
+
+    <div class="project-header">
+      <h2>Medievent</h2>
+      <p class="subtitle">Application de gestion d'événements médiévaux</p>
+      <div class="meta">
+        <span class="tag">Avril 2025 – Juin 2025</span>
+        <span class="tag">Projet académique</span>
+        <span class="tag">IUT2 / UGA, Grenoble</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📋 Description</h3>
+      <p>Application desktop Java/JavaFX permettant la gestion complète d'événements médiévaux : création d'événements, inscription des participants, gestion des stands et suivi budgétaire.</p>
+    </div>
+
+    <div class="section">
+      <h3>🎯 Objectifs</h3>
+      <ul>
+        <li>Concevoir et développer une application Java avec interface graphique (JavaFX)</li>
+        <li>Modéliser et exploiter une base de données relationnelle (SQL)</li>
+        <li>Travailler en équipe avec un workflow Git/GitLab</li>
+        <li>Appliquer une architecture orientée objet robuste</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>👥 Travail en groupe</h3>
+      <p>Projet réalisé en équipe de 4, avec une organisation de type agile : sprints courts, revues régulières, gestion des tâches sur GitLab. Réunions hebdomadaires pour synchroniser l'avancement.</p>
+    </div>
+
+    <div class="section">
+      <h3>🙋 Contribution individuelle</h3>
+      <ul>
+        <li>Développement de plusieurs modules back-end (gestion des événements, participants)</li>
+        <li>Conception et implémentation du schéma de base de données</li>
+        <li>Participation à la structuration de l'architecture du projet</li>
+        <li>Rédaction de documentation technique</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>🛠 Compétences et Technologies</h3>
+      <div class="skills-grid">
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">JavaFX</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">XML</span>
+        <span class="skill-tag">GitLab</span>
+        <span class="skill-tag">IntelliJ IDEA</span>
+        <span class="skill-tag">SceneBuilder</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📚 Savoirs acquis</h3>
+      <ul>
+        <li>Architecture MVC en Java</li>
+        <li>Liaison JavaFX avec base de données via JDBC</li>
+        <li>Gestion de versions avec GitLab (branches, merge requests)</li>
+        <li>Travail en équipe avec méthodologie agile</li>
+      </ul>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .container { width: 80%; margin: 0 auto; max-width: 900px; }
+  .back-link { display: inline-block; margin-bottom: 30px; color: #ffcc00; font-size: 0.95em; }
+  .project-header { margin-bottom: 50px; }
+  .subtitle { font-size: 1.2em; color: #aaa; margin: 10px 0 20px; }
+  .meta { display: flex; gap: 10px; flex-wrap: wrap; }
+  .tag { background: rgba(255,204,0,0.1); color: #ffcc00; padding: 6px 14px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(255,204,0,0.3); }
+  .section { background: linear-gradient(135deg, rgba(42,42,42,0.6), rgba(30,30,30,0.6)); border-radius: 12px; padding: 30px; margin-bottom: 25px; border-left: 3px solid #ffcc00; }
+  .section h3 { margin-bottom: 15px; font-size: 1.15em; }
+  .section p, .section li { color: #ddd; line-height: 1.8; }
+  .section ul { padding-left: 20px; }
+  .section li { margin-bottom: 6px; }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .skill-tag { background: rgba(255,204,0,0.1); color: #ffcc00; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; border: 1px solid rgba(255,204,0,0.3); }
+</style>

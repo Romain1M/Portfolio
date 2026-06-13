@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="VM Debian 12 - Romain Missoum">
+  <section class="container project-detail">
+    <a href="/projects" class="back-link">← Retour aux projets</a>
+
+    <div class="project-header">
+      <h2>Installation d'une VM Debian 12</h2>
+      <p class="subtitle">Tutoriel d'installation et de configuration</p>
+      <div class="meta">
+        <span class="tag">2024</span>
+        <span class="tag">Projet académique</span>
+        <span class="tag">IUT2 / UGA, Grenoble</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📋 Description</h3>
+      <p>Création d'un tutoriel complet en anglais guidant l'installation et la configuration d'une machine virtuelle Debian 12. Le document couvre l'installation de l'OS, la configuration réseau, l'installation de paquets et les bonnes pratiques de sécurité de base.</p>
+    </div>
+
+    <div class="section">
+      <h3>🎯 Objectifs</h3>
+      <ul>
+        <li>Identifier les composants matériels et logiciels d'un système</li>
+        <li>Installer et configurer un système d'exploitation Linux</li>
+        <li>Rédiger une documentation technique claire en anglais</li>
+        <li>Suivre et appliquer des procédures d'installation standardisées</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>🙋 Contribution individuelle</h3>
+      <p>Travail réalisé en autonomie. Installation complète de la VM, rédaction du tutoriel pas-à-pas avec captures d'écran annotées, entièrement en anglais technique.</p>
+    </div>
+
+    <div class="section">
+      <h3>🛠 Compétences et Technologies</h3>
+      <div class="skills-grid">
+        <span class="skill-tag">Linux / Debian</span>
+        <span class="skill-tag">VirtualBox</span>
+        <span class="skill-tag">Administration Système</span>
+        <span class="skill-tag">Documentation technique</span>
+        <span class="skill-tag">Anglais technique</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📚 Savoirs acquis</h3>
+      <ul>
+        <li>Installation et configuration d'un OS Linux (Debian)</li>
+        <li>Gestion des partitions, utilisateurs et droits</li>
+        <li>Configuration réseau de base sous Linux</li>
+        <li>Rédaction de documentation technique en anglais</li>
+      </ul>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .container { width: 80%; margin: 0 auto; max-width: 900px; }
+  .back-link { display: inline-block; margin-bottom: 30px; color: #ffcc00; font-size: 0.95em; }
+  .project-header { margin-bottom: 50px; }
+  .subtitle { font-size: 1.2em; color: #aaa; margin: 10px 0 20px; }
+  .meta { display: flex; gap: 10px; flex-wrap: wrap; }
+  .tag { background: rgba(255,204,0,0.1); color: #ffcc00; padding: 6px 14px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(255,204,0,0.3); }
+  .section { background: linear-gradient(135deg, rgba(42,42,42,0.6), rgba(30,30,30,0.6)); border-radius: 12px; padding: 30px; margin-bottom: 25px; border-left: 3px solid #ffcc00; }
+  .section h3 { margin-bottom: 15px; font-size: 1.15em; }
+  .section p, .section li { color: #ddd; line-height: 1.8; }
+  .section ul { padding-left: 20px; }
+  .section li { margin-bottom: 6px; }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .skill-tag { background: rgba(255,204,0,0.1); color: #ffcc00; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; border: 1px solid rgba(255,204,0,0.3); }
+</style>
