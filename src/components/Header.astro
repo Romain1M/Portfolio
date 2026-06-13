@@ -1,0 +1,99 @@
+---
+const currentAge = 20;
+const title = "Romain Missoum";
+const subtitle = "Développeur & Passionné d'informatique";
+---
+
+<header>
+  <div class="container header-content">
+    <div class="header-text">
+      <h1>{title}</h1>
+      <p class="subtitle">{subtitle}</p>
+      <p class="status">📍 {currentAge} ans • 🎓 Étudiant en informatique</p>
+      <p class="bio">Créatif, curieux et déterminé à résoudre des problèmes complexes par la programmation</p>
+    </div>
+  </div>
+</header>
+
+<style>
+  header {
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.9) 0%, rgba(42, 42, 42, 0.9) 100%);
+    padding: 80px 0 60px;
+    border-bottom: 3px solid #ffcc00;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 204, 0, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-content {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    font-weight: bold;
+    letter-spacing: -1px;
+  }
+
+  .subtitle {
+    font-size: 1.5em;
+    color: #ff9500;
+    margin-bottom: 15px;
+    font-weight: 500;
+  }
+
+  .status {
+    font-size: 1.1em;
+    color: #aaa;
+    margin: 10px 0;
+  }
+
+  .bio {
+    font-size: 1.1em;
+    color: #bbb;
+    margin-top: 20px;
+    font-style: italic;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.2em;
+    }
+
+    .subtitle {
+      font-size: 1.2em;
+    }
+
+    header {
+      padding: 50px 0 40px;
+    }
+
+    header::before {
+      width: 300px;
+      height: 300px;
+    }
+  }
+</style>
+

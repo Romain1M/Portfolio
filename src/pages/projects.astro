@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import projectsData from '../data/projects.json';
+---
+
+<Layout title="Projets - Romain Missoum">
+  <section class="container">
+    <h2>Mes Projets</h2>
+    <p class="intro-text">Voici les projets sur lesquels j'ai travaillé et dont je suis fier</p>
+
+    <div class="projects-list">
+      {projectsData.length > 0 ? (
+        projectsData.map(project => (
+          <ProjectCard
+            title={project.title}
+            description={project.description}
+            skills={project.skills}
+            link={project.link}
+          />
+        ))
+      ) : (
+        <div class="no-projects">
+          <p>Plus de projets en développement...</p>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .intro-text {
+    text-align: center;
+    font-size: 1.1em;
+    color: #aaa;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .projects-list {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .no-projects {
+    text-align: center;
+    padding: 60px 30px;
+    background: linear-gradient(135deg, rgba(42, 42, 42, 0.6) 0%, rgba(30, 30, 30, 0.6) 100%);
+    border-radius: 12px;
+    border: 2px dashed rgba(255, 204, 0, 0.3);
+    color: #aaa;
+    font-size: 1.15em;
+  }
+
+  @media (max-width: 768px) {
+    .intro-text {
+      margin-bottom: 30px;
+    }
+  }
+</style>
+

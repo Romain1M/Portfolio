@@ -1,0 +1,143 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Romain Missoum - Portfolio" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Portfolio de Romain Missoum, développeur et étudiant en informatique" />
+		<title>{title}</title>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style is:global>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	html {
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		scroll-behavior: smooth;
+	}
+
+	body {
+		background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+		color: white;
+		line-height: 1.6;
+		min-height: 100vh;
+	}
+
+	main {
+		min-height: calc(100vh - 300px);
+		padding: 40px 0;
+	}
+
+	a {
+		color: #ffcc00;
+		text-decoration: none;
+		transition: all 0.3s ease;
+	}
+
+	a:hover {
+		color: #ff6600;
+	}
+
+	h1 {
+		background: linear-gradient(135deg, #ffcc00 0%, #ff6600 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text !important;
+	}
+
+	h2 {
+		text-align: center;
+		margin: 60px 0 40px;
+		font-size: 2.8em;
+		background: linear-gradient(135deg, #ffcc00 0%, #ff9500 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text !important;
+		position: relative;
+		padding-bottom: 20px;
+	}
+
+	h2::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100px;
+		height: 3px;
+		background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+	}
+
+	h3 {
+		color: #ffcc00;
+	}
+
+	.container {
+		width: 80%;
+		margin: 0 auto;
+		max-width: 1200px;
+	}
+
+	/* Animations */
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	main > section {
+		animation: fadeIn 0.6s ease forwards;
+	}
+
+	main > section:nth-child(2) {
+		animation-delay: 0.1s;
+	}
+
+	main > section:nth-child(3) {
+		animation-delay: 0.2s;
+	}
+
+	@media (max-width: 768px) {
+		h2 {
+			font-size: 2em;
+			margin: 40px 0 30px;
+		}
+
+		.container {
+			width: 90%;
+		}
+
+		main {
+			padding: 20px 0;
+		}
+	}
+</style>

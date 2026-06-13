@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import educationData from '../data/education.json';
+---
+
+<Layout title="À propos - Romain Missoum">
+	<section class="container about-section">
+		<h2>À propos de moi</h2>
+		<div class="about-content">
+			<div class="about-text">
+				<p class="intro">Bonjour ! Je suis Romain Missoum, étudiant passionné par le développement d'applications et l'informatique en général.</p>
+				<p>Je souhaite devenir développeur au sein d'une entreprise innovante où je pourrai contribuer à des projets ambitieux et apprendre continuellement.</p>
+				<p>Ma curiosité naturelle m'a poussé à explorer différents domaines de l'informatique : du développement web aux systèmes d'exploitation, en passant par les bases de données et la programmation orientée objet.</p>
+				<div class="strengths">
+					<h3>🎯 Mes forces</h3>
+					<ul>
+						<li>Apprentissage rapide et autonome</li>
+						<li>Résolution de problèmes créative</li>
+						<li>Attention aux détails</li>
+						<li>Collaboration et communication</li>
+						<li>Documentation technique claire</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="container education-section">
+		<h2>📚 Parcours Éducatif</h2>
+		<div class="education-grid">
+			{educationData.map(edu => (
+				<div class="education-card">
+					<h3>{edu.title}</h3>
+					<p class="spec">{edu.description}</p>
+					<p class="details">{edu.details}</p>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section class="container interests-section">
+		<h2>🎯 Centres d'intérêt</h2>
+		<div class="interests-grid">
+			<div class="interest-card">
+				<div class="interest-icon">🤖</div>
+				<h3>Local LLM & Agents IA</h3>
+				<p>J'expérimente des modèles de langage en local et la création d'agents autonomes</p>
+			</div>
+			<div class="interest-card">
+				<div class="interest-icon">💪</div>
+				<h3>Musculation</h3>
+				<p>La salle de sport est mon équilibre entre écrans et effort physique</p>
+			</div>
+			<div class="interest-card">
+				<div class="interest-icon">🎮</div>
+				<h3>Jeux vidéo</h3>
+				<p>Fan de jeux variés, j'apprécie les univers immersifs et les défis stratégiques</p>
+			</div>
+			<div class="interest-card">
+				<div class="interest-icon">🐱</div>
+				<h3>Chats</h3>
+				<p>Grand amoureux des félins, ils sont les meilleurs compagnons de code</p>
+			</div>
+			<div class="interest-card">
+				<div class="interest-icon">🎬</div>
+				<h3>Vidéographie</h3>
+				<p>Capturer et monter des vidéos, un autre moyen d'exprimer ma créativité</p>
+			</div>
+		</div>
+	</section>
+</Layout>
+</style>

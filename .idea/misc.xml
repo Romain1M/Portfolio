@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GitLabDefaultAccount">
+    <option name="defaultAccountId" value="8119a673-70ab-4ec0-b37a-16911e23f625" />
+  </component>
+  <component name="KubernetesApiProvider">{}</component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" default="true" project-jdk-name="temurin-25" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

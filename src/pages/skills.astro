@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SkillCard from '../components/SkillCard.astro';
+import skillsData from '../data/skills.json';
+---
+
+<Layout title="Compétences - Romain Missoum">
+  <section class="container">
+    <h2>Mes Compétences</h2>
+    <p class="intro-text">Découvrez les domaines dans lesquels j'ai développé des compétences</p>
+
+    <div class="skills-grid">
+      {skillsData.map(skillGroup => (
+        <SkillCard
+          category={skillGroup.category}
+          skills={skillGroup.skills}
+        />
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .intro-text {
+    text-align: center;
+    font-size: 1.1em;
+    color: #aaa;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .skills-grid {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+</style>
+

@@ -1,0 +1,23 @@
+[
+  {
+    "category": "Développement Web",
+    "skills": ["HTML", "CSS"]
+  },
+  {
+    "category": "Programmation",
+    "skills": ["Python", "Java", "JavaFX"]
+  },
+  {
+    "category": "Base de données",
+    "skills": ["PostgreSQL", "MySQL"]
+  },
+  {
+    "category": "Administration Système",
+    "skills": ["Composants matériels/logiciels", "Installation OS", "Configuration système"]
+  },
+  {
+    "category": "Rédaction technique",
+    "skills": ["Documentation en anglais"]
+  }
+]
+

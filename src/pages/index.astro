@@ -1,0 +1,265 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Romain Missoum - Portfolio">
+	<section id="cta" class="container cta-section">
+		<div class="cta-content">
+			<p class="cta-text">Passionné par la programmation et les défis informatiques</p>
+			<div class="cta-buttons">
+				<a href="/about" class="btn btn-primary">En savoir plus →</a>
+				<a href="/projects" class="btn btn-secondary">Voir mes projets →</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="highlights" class="container highlights">
+		<h2>Mes Compétences Clés</h2>
+		<div class="highlights-grid">
+			<div class="highlight-card">
+				<div class="icon">💻</div>
+				<h3>Développement Web</h3>
+				<p>HTML, CSS et création d'interfaces modernes</p>
+			</div>
+			<div class="highlight-card">
+				<div class="icon">🐍</div>
+				<h3>Programmation</h3>
+				<p>Python, Java, JavaFX et algorithmes</p>
+			</div>
+			<div class="highlight-card">
+				<div class="icon">💾</div>
+				<h3>Bases de données</h3>
+				<p>PostgreSQL, MySQL et conception de schémas</p>
+			</div>
+			<div class="highlight-card">
+				<div class="icon">🔧</div>
+				<h3>Administration Système</h3>
+				<p>Installation et configuration d'OS</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="featured" class="container featured-section">
+		<h2>Projet Récent</h2>
+		<div class="featured-project">
+			<div class="project-content">
+				<h3>Installation d'une machine virtuelle Debian 12</h3>
+				<p>Création d'un tutoriel complet en anglais pour guider l'installation et la configuration d'une machine virtuelle Debian 12.</p>
+				<div class="skills-list">
+					<span class="skill-tag">Administration Système</span>
+					<span class="skill-tag">Documentation</span>
+					<span class="skill-tag">Anglais</span>
+				</div>
+				<a href="/projects" class="btn btn-secondary">Voir tous les projets →</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="cta-bottom" class="container cta-section-bottom">
+		<h2>Prêt à collaborer ?</h2>
+		<p>Je suis à la recherche d'opportunités pour développer mes compétences et contribuer à des projets innovants.</p>
+		<a href="/contact" class="btn btn-primary">Me contacter</a>
+	</section>
+</Layout>
+
+<style>
+	.cta-section {
+		text-align: center;
+		margin-bottom: 60px;
+	}
+
+	.cta-content {
+		background: linear-gradient(135deg, rgba(255, 204, 0, 0.1) 0%, rgba(255, 149, 0, 0.05) 100%);
+		padding: 50px 40px;
+		border-radius: 12px;
+		border: 2px solid rgba(255, 204, 0, 0.3);
+		backdrop-filter: blur(10px);
+	}
+
+	.cta-text {
+		font-size: 1.6em;
+		color: #ffcc00;
+		margin-bottom: 30px;
+		font-weight: 500;
+		letter-spacing: 0.5px;
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 20px;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 14px 32px;
+		border-radius: 8px;
+		font-weight: 600;
+		transition: all 0.3s ease;
+		text-decoration: none;
+		font-size: 1.05em;
+	}
+
+	.btn-primary {
+		background: linear-gradient(135deg, #ffcc00, #ff9500);
+		color: #121212;
+	}
+
+	.btn-primary:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 10px 30px rgba(255, 204, 0, 0.4);
+	}
+
+	.btn-secondary {
+		background: transparent;
+		color: #ffcc00;
+		border: 2px solid #ffcc00;
+	}
+
+	.btn-secondary:hover {
+		background: rgba(255, 204, 0, 0.1);
+		transform: translateY(-3px);
+	}
+
+	.highlights {
+		margin: 80px 0;
+	}
+
+	.highlights-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 25px;
+		margin-top: 40px;
+	}
+
+	.highlight-card {
+		background: linear-gradient(135deg, rgba(42, 42, 42, 0.6) 0%, rgba(30, 30, 30, 0.6) 100%);
+		padding: 30px;
+		border-radius: 12px;
+		text-align: center;
+		transition: all 0.3s ease;
+		border: 2px solid transparent;
+		backdrop-filter: blur(10px);
+	}
+
+	.highlight-card:hover {
+		transform: translateY(-10px);
+		border-color: #ffcc00;
+		box-shadow: 0 15px 40px rgba(255, 204, 0, 0.15);
+	}
+
+	.highlight-card .icon {
+		font-size: 2.5em;
+		margin-bottom: 15px;
+	}
+
+	.highlight-card h3 {
+		font-size: 1.25em;
+		margin-bottom: 10px;
+		color: #ffcc00;
+	}
+
+	.highlight-card p {
+		color: #aaa;
+		line-height: 1.6;
+	}
+
+	.featured-section {
+		margin: 80px 0;
+	}
+
+	.featured-project {
+		background: linear-gradient(135deg, rgba(255, 204, 0, 0.1) 0%, rgba(255, 149, 0, 0.05) 100%);
+		padding: 40px;
+		border-radius: 12px;
+		border: 2px solid rgba(255, 204, 0, 0.3);
+		backdrop-filter: blur(10px);
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	.project-content h3 {
+		font-size: 1.5em;
+		color: #ffcc00;
+		margin-bottom: 15px;
+	}
+
+	.project-content p {
+		color: #ddd;
+		line-height: 1.8;
+		margin-bottom: 20px;
+	}
+
+	.skills-list {
+		display: flex;
+		gap: 10px;
+		flex-wrap: wrap;
+		margin-bottom: 25px;
+	}
+
+	.skill-tag {
+		background: rgba(255, 204, 0, 0.1);
+		color: #ffcc00;
+		padding: 8px 15px;
+		border-radius: 20px;
+		font-size: 0.9em;
+		border: 1px solid rgba(255, 204, 0, 0.3);
+	}
+
+	.cta-section-bottom {
+		text-align: center;
+		background: linear-gradient(135deg, rgba(255, 204, 0, 0.1) 0%, rgba(255, 149, 0, 0.05) 100%);
+		padding: 60px 40px;
+		border-radius: 12px;
+		border: 2px solid rgba(255, 204, 0, 0.3);
+		margin-bottom: 40px;
+		backdrop-filter: blur(10px);
+	}
+
+	.cta-section-bottom h2 {
+		margin-bottom: 20px;
+	}
+
+	.cta-section-bottom p {
+		font-size: 1.15em;
+		color: #ddd;
+		margin-bottom: 30px;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.container {
+		width: 80%;
+		margin: 0 auto;
+		max-width: 1200px;
+	}
+
+	@media (max-width: 768px) {
+		.cta-text {
+			font-size: 1.3em;
+		}
+
+		.cta-buttons {
+			flex-direction: column;
+		}
+
+		.btn {
+			width: 100%;
+		}
+
+		.highlights-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.featured-project {
+			padding: 25px;
+		}
+
+		.cta-section-bottom {
+			padding: 40px 25px;
+		}
+	}
+</style>
+
