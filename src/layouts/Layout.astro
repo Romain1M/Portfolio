@@ -25,10 +25,23 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 			<slot />
 		</main>
 		<Footer />
+		<button id="cat-trigger" class="cat-trigger" type="button" aria-label="Activer le mode chat secret">cat</button>
+		<div id="cat-warning" class="cat-warning" hidden>Cat flood incoming...</div>
+		<div id="cat-flood-layer" class="cat-flood-layer" aria-hidden="true"></div>
 	</body>
 </html>
 
 <style is:global>
+	:root {
+		--surface-1: #f4f7fb;
+		--surface-2: #ffffff;
+		--text-1: #0f172a;
+		--text-2: #334155;
+		--accent: #2563eb;
+		--accent-soft: #dbeafe;
+		--border: #dbe3ee;
+	}
+
 	* {
 		margin: 0;
 		padding: 0;
@@ -36,49 +49,49 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 	}
 
 	html {
-		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		font-family: Inter, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 		scroll-behavior: smooth;
 	}
 
 	body {
-		background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-		color: white;
+		background:
+			radial-gradient(circle at 15% 15%, #dbeafe 0, transparent 42%),
+			radial-gradient(circle at 85% 5%, #e2e8f0 0, transparent 35%),
+			linear-gradient(180deg, #f7f9fc 0%, #edf2f7 100%);
+		color: var(--text-1);
 		line-height: 1.6;
 		min-height: 100vh;
+		transition: background 0.5s ease, color 0.5s ease;
 	}
 
 	main {
-		min-height: calc(100vh - 300px);
-		padding: 40px 0;
+		min-height: calc(100vh - 260px);
+		padding: 32px 0 48px;
 	}
 
 	a {
-		color: #ffcc00;
+		color: var(--accent);
 		text-decoration: none;
-		transition: all 0.3s ease;
+		transition: color 0.2s ease;
 	}
 
 	a:hover {
-		color: #ff6600;
+		color: #1d4ed8;
 	}
 
 	h1 {
-		background: linear-gradient(135deg, #ffcc00 0%, #ff6600 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text !important;
+		color: #0b1220;
+		font-size: clamp(2rem, 4vw, 3.2rem);
+		letter-spacing: -0.04em;
 	}
 
 	h2 {
 		text-align: center;
-		margin: 60px 0 40px;
-		font-size: 2.8em;
-		background: linear-gradient(135deg, #ffcc00 0%, #ff9500 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text !important;
+		margin: 48px 0 28px;
+		font-size: clamp(1.7rem, 3vw, 2.4rem);
+		color: #0f172a;
 		position: relative;
-		padding-bottom: 20px;
+		padding-bottom: 14px;
 	}
 
 	h2::after {
@@ -87,26 +100,139 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 		bottom: 0;
 		left: 50%;
 		transform: translateX(-50%);
-		width: 100px;
-		height: 3px;
-		background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+		width: 84px;
+		height: 2px;
+		background: linear-gradient(90deg, transparent, var(--accent), transparent);
 	}
 
 	h3 {
-		color: #ffcc00;
+		color: #0f172a;
 	}
 
 	.container {
-		width: 80%;
+		width: min(1100px, 88%);
 		margin: 0 auto;
-		max-width: 1200px;
 	}
 
-	/* Animations */
+	main section > div,
+	main section > article,
+	main section > ul,
+	main section > p,
+	main section > form {
+		background: var(--surface-2);
+		border: 1px solid var(--border);
+		border-radius: 14px;
+	}
+
+	.cat-trigger {
+		position: fixed;
+		right: 10px;
+		bottom: 10px;
+		z-index: 1500;
+		width: 22px;
+		height: 22px;
+		border: 1px solid #64748b;
+		background: #f8fafc;
+		color: #64748b;
+		font-size: 10px;
+		border-radius: 999px;
+		opacity: 0.08;
+		cursor: pointer;
+		transition: opacity 0.2s ease, transform 0.2s ease;
+	}
+
+	.cat-trigger:hover,
+	.cat-trigger:focus-visible {
+		opacity: 0.75;
+		transform: scale(1.08);
+	}
+
+	.cat-trigger:focus-visible {
+		outline: 2px solid #2563eb;
+		outline-offset: 2px;
+	}
+
+	.cat-trigger:disabled {
+		cursor: wait;
+		opacity: 0.25;
+	}
+
+	.cat-warning {
+		position: fixed;
+		top: 20px;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 1700;
+		padding: 10px 16px;
+		border-radius: 999px;
+		background: #111827;
+		color: #f8fafc;
+		font-size: 0.95rem;
+		letter-spacing: 0.02em;
+		border: 1px solid #1f2937;
+		box-shadow: 0 12px 36px rgba(15, 23, 42, 0.35);
+	}
+
+	.cat-flood-layer {
+		position: fixed;
+		inset: 0;
+		z-index: 1600;
+		pointer-events: none;
+		overflow: hidden;
+	}
+
+	.cat-card {
+		position: absolute;
+		width: var(--cat-width);
+		height: var(--cat-height);
+		border-radius: 10px;
+		object-fit: cover;
+		border: 1px solid rgba(15, 23, 42, 0.2);
+		box-shadow: 0 10px 22px rgba(2, 6, 23, 0.3);
+		transform: translate3d(var(--start-x), var(--start-y), 0) rotate(var(--start-rotation));
+		transition:
+			transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+			filter 0.3s ease;
+	}
+
+	.cat-card.landing {
+		transform: translate3d(var(--target-x), var(--target-y), 0) rotate(var(--target-rotation));
+	}
+
+	.cat-card.leaving {
+		transform: translate3d(var(--target-x), calc(110vh + var(--cat-height)), 0) rotate(var(--leave-rotation));
+		transition:
+			transform 0.7s ease-in,
+			filter 0.25s ease;
+		filter: blur(1px);
+	}
+
+	body.cat-theme {
+		--surface-2: rgba(253, 244, 228, 0.95);
+		--surface-1: #fff7ed;
+		--text-1: #422006;
+		--text-2: #7c2d12;
+		--accent: #b45309;
+		--accent-soft: #fed7aa;
+		--border: rgba(180, 83, 9, 0.35);
+	}
+
+	body.cat-theme::before {
+		content: "";
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+		opacity: 0.16;
+		background-image: var(--cat-wallpaper);
+		background-size: 240px 135px;
+		background-repeat: repeat;
+		pointer-events: none;
+	}
+
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
-			transform: translateY(20px);
+			transform: translateY(12px);
 		}
 		to {
 			opacity: 1;
@@ -115,7 +241,7 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 	}
 
 	main > section {
-		animation: fadeIn 0.6s ease forwards;
+		animation: fadeIn 0.45s ease forwards;
 	}
 
 	main > section:nth-child(2) {
@@ -128,16 +254,137 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 
 	@media (max-width: 768px) {
 		h2 {
-			font-size: 2em;
-			margin: 40px 0 30px;
+			margin: 34px 0 24px;
 		}
 
-		.container {
-			width: 90%;
+		.cat-warning {
+			width: calc(100% - 24px);
+			text-align: center;
 		}
 
 		main {
-			padding: 20px 0;
+			padding: 20px 0 32px;
 		}
 	}
 </style>
+
+<script is:inline>
+	const trigger = document.getElementById("cat-trigger");
+	const warning = document.getElementById("cat-warning");
+	const floodLayer = document.getElementById("cat-flood-layer");
+	const body = document.body;
+	let floodRunning = false;
+
+	const catApi = () =>
+		`https://cataas.com/cat?width=640&height=360&fit=cover&v=${Math.floor(Math.random() * 1000000)}`;
+
+	const getGrid = () => {
+		const gap = 10;
+		const ratio = 640 / 360;
+		const catWidth = Math.max(128, Math.min(220, Math.floor(window.innerWidth / 5.2)));
+		const catHeight = Math.round(catWidth / ratio);
+		const cols = Math.max(1, Math.ceil(window.innerWidth / (catWidth + gap)));
+		const rows = Math.max(1, Math.ceil(window.innerHeight / (catHeight + gap)));
+		const usedWidth = cols * catWidth + (cols - 1) * gap;
+		const usedHeight = rows * catHeight + (rows - 1) * gap;
+		return {
+			cols,
+			rows,
+			gap,
+			catWidth,
+			catHeight,
+			offsetX: Math.max(0, Math.floor((window.innerWidth - usedWidth) / 2)),
+			offsetY: Math.max(0, Math.floor((window.innerHeight - usedHeight) / 2)),
+		};
+	};
+
+	const preloadImage = (url) =>
+		new Promise((resolve) => {
+			const img = new Image();
+			img.onload = () => resolve(url);
+			img.onerror = () => resolve(url);
+			img.src = url;
+		});
+
+	const buildCatCard = async (index, grid) => {
+		const row = Math.floor(index / grid.cols);
+		const col = index % grid.cols;
+		const targetX = grid.offsetX + col * (grid.catWidth + grid.gap);
+		const targetY = grid.offsetY + row * (grid.catHeight + grid.gap);
+		const startX = targetX + (Math.random() * 90 - 45);
+		const startY = -1 * (150 + Math.random() * 450);
+		const startRotation = `${Math.random() * 14 - 7}deg`;
+		const targetRotation = `${Math.random() * 8 - 4}deg`;
+		const leaveRotation = `${Math.random() * 18 - 9}deg`;
+		const imageUrl = catApi();
+
+		await preloadImage(imageUrl);
+
+		const card = document.createElement("img");
+		card.className = "cat-card";
+		card.alt = "";
+		card.src = imageUrl;
+		card.style.setProperty("--cat-width", `${grid.catWidth}px`);
+		card.style.setProperty("--cat-height", `${grid.catHeight}px`);
+		card.style.setProperty("--start-x", `${startX}px`);
+		card.style.setProperty("--start-y", `${startY}px`);
+		card.style.setProperty("--target-x", `${targetX}px`);
+		card.style.setProperty("--target-y", `${targetY}px`);
+		card.style.setProperty("--start-rotation", startRotation);
+		card.style.setProperty("--target-rotation", targetRotation);
+		card.style.setProperty("--leave-rotation", leaveRotation);
+		card.style.transitionDelay = `${row * 35 + col * 14}ms`;
+		return card;
+	};
+
+	const runCatFlood = async () => {
+		if (floodRunning) {
+			return;
+		}
+
+		floodRunning = true;
+		trigger.disabled = true;
+		warning.hidden = false;
+		warning.textContent = "Cat flood incoming...";
+		floodLayer.replaceChildren();
+
+		const grid = getGrid();
+		const count = grid.rows * grid.cols;
+		const cards = await Promise.all(
+			Array.from({ length: count }, (_, index) => buildCatCard(index, grid))
+		);
+
+		if (!floodRunning) {
+			return;
+		}
+
+		floodLayer.replaceChildren(...cards);
+		requestAnimationFrame(() => {
+			for (const card of cards) {
+				card.classList.add("landing");
+			}
+		});
+
+		const maxLandingDelay = ((grid.rows - 1) * 35) + ((grid.cols - 1) * 14);
+		const landingTime = 820 + maxLandingDelay;
+
+		setTimeout(() => {
+			body.classList.add("cat-theme");
+			body.style.setProperty("--cat-wallpaper", `url("${catApi()}")`);
+			for (const card of cards) {
+				card.classList.add("leaving");
+			}
+		}, landingTime);
+
+		setTimeout(() => {
+			floodLayer.replaceChildren();
+			warning.hidden = true;
+			trigger.disabled = false;
+			floodRunning = false;
+		}, landingTime + 900);
+	};
+
+	if (trigger && warning && floodLayer) {
+		trigger.addEventListener("click", runCatFlood);
+	}
+</script>

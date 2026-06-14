@@ -9,7 +9,7 @@ const subtitle = "Etudiant BUT Informatique • En recherche d'alternance 2026/2
     <div class="header-text">
       <h1>{title}</h1>
       <p class="subtitle">{subtitle}</p>
-      <p class="status">📍 {currentAge} ans • 🎓 Étudiant en informatique</p>
+      <p class="status">{currentAge} ans • Etudiant en informatique</p>
       <p class="bio">Créatif, curieux et déterminé à résoudre des problèmes complexes par la programmation</p>
     </div>
   </div>
@@ -17,9 +17,10 @@ const subtitle = "Etudiant BUT Informatique • En recherche d'alternance 2026/2
 
 <style>
   header {
-    background: linear-gradient(135deg, rgba(30, 30, 30, 0.9) 0%, rgba(42, 42, 42, 0.9) 100%);
-    padding: 80px 0 60px;
-    border-bottom: 3px solid #ffcc00;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(8px);
+    padding: 72px 0 56px;
+    border-bottom: 1px solid #dbe3ee;
     position: relative;
     overflow: hidden;
   }
@@ -31,7 +32,7 @@ const subtitle = "Etudiant BUT Informatique • En recherche d'alternance 2026/2
     right: -10%;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(255, 204, 0, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, transparent 70%);
     border-radius: 50%;
   }
 
@@ -48,42 +49,35 @@ const subtitle = "Etudiant BUT Informatique • En recherche d'alternance 2026/2
   }
 
   h1 {
-    font-size: 3.5em;
     margin-bottom: 15px;
-    font-weight: bold;
-    letter-spacing: -1px;
+    font-weight: 700;
   }
 
   .subtitle {
-    font-size: 1.5em;
-    color: #ff9500;
+    font-size: 1.35em;
+    color: #1d4ed8;
     margin-bottom: 15px;
     font-weight: 500;
   }
 
   .status {
-    font-size: 1.1em;
-    color: #aaa;
+    font-size: 1.05em;
+    color: #475569;
     margin: 10px 0;
   }
 
   .bio {
-    font-size: 1.1em;
-    color: #bbb;
+    font-size: 1.05em;
+    color: #334155;
     margin-top: 20px;
-    font-style: italic;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
   }
 
   @media (max-width: 768px) {
-    h1 {
-      font-size: 2.2em;
-    }
-
     .subtitle {
-      font-size: 1.2em;
+      font-size: 1.05em;
     }
 
     header {
