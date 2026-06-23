@@ -18,31 +18,31 @@ import Layout from '../layouts/Layout.astro';
 
     <div class="section">
       <h3>Description</h3>
-      <p>Application desktop Java/JavaFX permettant la gestion complète d'événements médiévaux : création d'événements, inscription des participants, gestion des stands et suivi budgétaire.</p>
+      <p>Application desktop Java/JavaFX pour gérer des événements médiévaux : création d'événements, inscription des participants, stands, budget. Projet de fin de BUT1 avec une vraie base de données derrière.</p>
     </div>
 
     <div class="section">
-      <h3>Objectifs</h3>
+      <h3>Ce qu'on devait faire</h3>
       <ul>
-        <li>Concevoir et développer une application Java avec interface graphique (JavaFX)</li>
-        <li>Modéliser et exploiter une base de données relationnelle (SQL)</li>
-        <li>Travailler en équipe avec un workflow Git/GitLab</li>
-        <li>Appliquer une architecture orientée objet robuste</li>
+        <li>Créer une interface graphique avec JavaFX (SceneBuilder pour les maquettes)</li>
+        <li>Modéliser et requêter une base de données relationnelle en SQL</li>
+        <li>Bosser en équipe avec Git/GitLab</li>
+        <li>Appliquer une architecture orientée objet cohérente</li>
       </ul>
     </div>
 
     <div class="section">
-      <h3>👥 Travail en groupe</h3>
-      <p>Projet réalisé en équipe de 4, avec une organisation de type agile : sprints courts, revues régulières, gestion des tâches sur GitLab. Réunions hebdomadaires pour synchroniser l'avancement.</p>
+      <h3>👥 L'équipe</h3>
+      <p>On était 4. On a essayé de s'organiser façon agile avec des sprints courts — c'était notre premier vrai projet en équipe sur plusieurs mois, donc y'a eu des ajustements en cours de route.</p>
     </div>
 
     <div class="section">
-      <h3>🙋 Contribution individuelle</h3>
+      <h3>🙋 Ce que j'ai fait</h3>
       <ul>
-        <li>Développement de plusieurs modules back-end (gestion des événements, participants)</li>
-        <li>Conception et implémentation du schéma de base de données</li>
-        <li>Participation à la structuration de l'architecture du projet</li>
-        <li>Rédaction de documentation technique</li>
+        <li>Développement de plusieurs modules (gestion des événements, inscription des participants)</li>
+        <li>Conception du schéma de base de données et écriture des requêtes</li>
+        <li>Participation à l'architecture générale du projet</li>
+        <li>Rédaction de la documentation technique</li>
       </ul>
     </div>
 
@@ -60,12 +60,12 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <div class="section">
-      <h3>Savoirs acquis</h3>
+      <h3>Ce que j'ai appris</h3>
       <ul>
-        <li>Architecture MVC en Java</li>
-        <li>Liaison JavaFX avec base de données via JDBC</li>
-        <li>Gestion de versions avec GitLab (branches, merge requests)</li>
-        <li>Travail en équipe avec méthodologie agile</li>
+        <li>Architecture MVC en Java — ça m'a aidé à structurer le code proprement au lieu de tout mettre dans le même fichier</li>
+        <li>JDBC pour connecter Java à une base de données, c'est pas magique mais ça marche</li>
+        <li>Les branches GitLab : on a eu des conflits de merge, et on a appris à les gérer</li>
+        <li>Travailler à 4 sur le même projet demande plus de communication qu'on ne le pense</li>
       </ul>
     </div>
   </section>
@@ -73,16 +73,18 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   .container { width: 80%; margin: 0 auto; max-width: 900px; }
-  .back-link { display: inline-block; margin-bottom: 30px; color: #ffcc00; font-size: 0.95em; }
+  .back-link { display: inline-block; margin-bottom: 30px; color: var(--primary); font-size: 0.95em; font-weight: 500; transition: all 0.3s; }
+  .back-link:hover { transform: translateX(-4px); color: var(--accent); }
   .project-header { margin-bottom: 50px; }
-  .subtitle { font-size: 1.2em; color: #aaa; margin: 10px 0 20px; }
+  .subtitle { font-size: 1.2em; color: var(--dk-muted); margin: 10px 0 20px; }
   .meta { display: flex; gap: 10px; flex-wrap: wrap; }
-  .tag { background: rgba(255,204,0,0.1); color: #ffcc00; padding: 6px 14px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(255,204,0,0.3); }
-  .section { background: linear-gradient(135deg, rgba(42,42,42,0.6), rgba(30,30,30,0.6)); border-radius: 12px; padding: 30px; margin-bottom: 25px; border-left: 3px solid #ffcc00; }
-  .section h3 { margin-bottom: 15px; font-size: 1.15em; }
-  .section p, .section li { color: #ddd; line-height: 1.8; }
+  .tag { background: rgba(147,197,253,0.15); color: var(--dk-accent); padding: 6px 14px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(147,197,253,0.3); }
+  .section { background: rgba(31,41,55,0.8); border-radius: 12px; padding: 30px; margin-bottom: 25px; backdrop-filter: blur(10px); border: 1px solid rgba(147,197,253,0.2); }
+  .section h3 { margin-bottom: 15px; font-size: 1.15em; color: var(--dk-accent); }
+  .section p, .section li { color: var(--dk-text); line-height: 1.8; }
   .section ul { padding-left: 20px; }
   .section li { margin-bottom: 6px; }
   .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-  .skill-tag { background: rgba(255,204,0,0.1); color: #ffcc00; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; border: 1px solid rgba(255,204,0,0.3); }
+  .skill-tag { background: rgba(147,197,253,0.15); color: var(--dk-accent); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; border: 1px solid rgba(147,197,253,0.3); transition: all 0.2s; }
+  .skill-tag:hover { background: rgba(147,197,253,0.25); }
 </style>

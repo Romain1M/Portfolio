@@ -18,22 +18,21 @@ import Layout from '../layouts/Layout.astro';
 
     <div class="section">
       <h3>Description</h3>
-      <p>Création d'un tutoriel complet en anglais guidant l'installation et la configuration d'une machine virtuelle Debian 12. Le document couvre l'installation de l'OS, la configuration réseau, l'installation de paquets et les bonnes pratiques de sécurité de base.</p>
+      <p>Tutoriel complet en anglais pour installer et configurer une VM Debian 12 avec VirtualBox. Couvre l'installation de l'OS, la config réseau, les paquets de base et quelques bonnes pratiques. C'était notre premier projet d'admin système en BUT.</p>
     </div>
 
     <div class="section">
-      <h3>Objectifs</h3>
+      <h3>Ce qu'on devait faire</h3>
       <ul>
-        <li>Identifier les composants matériels et logiciels d'un système</li>
-        <li>Installer et configurer un système d'exploitation Linux</li>
-        <li>Rédiger une documentation technique claire en anglais</li>
-        <li>Suivre et appliquer des procédures d'installation standardisées</li>
+        <li>Installer et configurer Linux de zéro dans une VM</li>
+        <li>Rédiger une documentation technique claire et en anglais</li>
+        <li>Suivre une procédure standardisée et la reproduire</li>
       </ul>
     </div>
 
     <div class="section">
-      <h3>🙋 Contribution individuelle</h3>
-      <p>Travail réalisé en autonomie. Installation complète de la VM, rédaction du tutoriel pas-à-pas avec captures d'écran annotées, entièrement en anglais technique.</p>
+      <h3>🙋 Travail solo</h3>
+      <p>Fait en autonomie. J'ai installé la VM, rédigé le tutoriel pas à pas avec des captures d'écran annotées, entièrement en anglais technique. Premier projet où j'ai vraiment dû soigner la rédaction autant que le technique.</p>
     </div>
 
     <div class="section">
@@ -48,12 +47,12 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <div class="section">
-      <h3>Savoirs acquis</h3>
+      <h3>Ce que j'ai appris</h3>
       <ul>
-        <li>Installation et configuration d'un OS Linux (Debian)</li>
-        <li>Gestion des partitions, utilisateurs et droits</li>
-        <li>Configuration réseau de base sous Linux</li>
-        <li>Rédaction de documentation technique en anglais</li>
+        <li>Installer Debian de zéro m'a fait comprendre ce qui se passe vraiment au démarrage d'un OS</li>
+        <li>La gestion des partitions, des utilisateurs et des droits sous Linux</li>
+        <li>Configuration réseau de base (IP, gateway, DNS) — des choses qu'on prend pour acquis</li>
+        <li>Écrire une doc technique en anglais pour quelqu'un qui ne sait pas d'où on part</li>
       </ul>
     </div>
   </section>
@@ -61,16 +60,18 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   .container { width: 80%; margin: 0 auto; max-width: 900px; }
-  .back-link { display: inline-block; margin-bottom: 30px; color: #ffcc00; font-size: 0.95em; }
+  .back-link { display: inline-block; margin-bottom: 30px; color: var(--primary); font-size: 0.95em; font-weight: 500; transition: all 0.3s; }
+  .back-link:hover { transform: translateX(-4px); color: var(--accent); }
   .project-header { margin-bottom: 50px; }
-  .subtitle { font-size: 1.2em; color: #aaa; margin: 10px 0 20px; }
+  .subtitle { font-size: 1.2em; color: var(--dk-muted); margin: 10px 0 20px; }
   .meta { display: flex; gap: 10px; flex-wrap: wrap; }
-  .tag { background: rgba(255,204,0,0.1); color: #ffcc00; padding: 6px 14px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(255,204,0,0.3); }
-  .section { background: linear-gradient(135deg, rgba(42,42,42,0.6), rgba(30,30,30,0.6)); border-radius: 12px; padding: 30px; margin-bottom: 25px; border-left: 3px solid #ffcc00; }
-  .section h3 { margin-bottom: 15px; font-size: 1.15em; }
-  .section p, .section li { color: #ddd; line-height: 1.8; }
+  .tag { background: rgba(147,197,253,0.15); color: var(--dk-accent); padding: 6px 14px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(147,197,253,0.3); }
+  .section { background: rgba(31,41,55,0.8); border-radius: 12px; padding: 30px; margin-bottom: 25px; backdrop-filter: blur(10px); border: 1px solid rgba(147,197,253,0.2); }
+  .section h3 { margin-bottom: 15px; font-size: 1.15em; color: var(--dk-accent); }
+  .section p, .section li { color: var(--dk-text); line-height: 1.8; }
   .section ul { padding-left: 20px; }
   .section li { margin-bottom: 6px; }
   .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-  .skill-tag { background: rgba(255,204,0,0.1); color: #ffcc00; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; border: 1px solid rgba(255,204,0,0.3); }
+  .skill-tag { background: rgba(147,197,253,0.15); color: var(--dk-accent); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; border: 1px solid rgba(147,197,253,0.3); transition: all 0.2s; }
+  .skill-tag:hover { background: rgba(147,197,253,0.25); }
 </style>

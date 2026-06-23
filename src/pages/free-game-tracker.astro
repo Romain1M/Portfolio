@@ -18,22 +18,22 @@ import Layout from '../layouts/Layout.astro';
 
     <div class="section">
       <h3>Description</h3>
-      <p>Application JavaScript qui consomme des API REST pour agréger et afficher les offres de jeux gratuits disponibles sur différentes plateformes (Epic Games, Steam, GOG). Filtrage par plateforme et affichage des détails de chaque offre.</p>
+      <p>Appli JavaScript qui récupère les jeux gratuits du moment sur Epic Games, Steam et GOG via des API REST et les affiche avec un filtre par plateforme. Au départ c'était juste pour m'entraîner aux API, et finalement c'est devenu un mini-outil que j'utilise vraiment.</p>
     </div>
 
     <div class="section">
-      <h3>Objectifs</h3>
+      <h3>Ce que je voulais faire</h3>
       <ul>
-        <li>Consommer des API REST et traiter des données JSON</li>
-        <li>Implémenter une logique de filtrage et gestion d'état côté client</li>
-        <li>Organiser le code selon une architecture MVC</li>
-        <li>Gérer les erreurs réseau et les cas limites</li>
+        <li>Apprendre à consommer des API REST et traiter du JSON</li>
+        <li>Gérer le filtrage et la mise à jour du DOM sans framework</li>
+        <li>Essayer d'organiser le code MVC en JS vanilla</li>
+        <li>Gérer les cas où l'API répond mal ou pas du tout</li>
       </ul>
     </div>
 
     <div class="section">
-      <h3>🙋 Contribution individuelle</h3>
-      <p>Projet réalisé en autonomie. Conception de l'architecture, développement complet front-end et logique applicative, gestion des appels API asynchrones avec fetch/async-await.</p>
+      <h3>🙋 Projet solo</h3>
+      <p>Fait seul, sur mon temps libre. J'ai conçu l'architecture, codé le front et la logique, et géré les appels asynchrones avec fetch/async-await. Petit projet mais complet de bout en bout.</p>
     </div>
 
     <div class="section">
@@ -48,12 +48,12 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <div class="section">
-      <h3>Savoirs acquis</h3>
+      <h3>Ce que j'ai appris</h3>
       <ul>
-        <li>Consommation d'API REST avec fetch et async/await</li>
-        <li>Architecture MVC en JavaScript vanilla</li>
-        <li>Gestion d'état et mise à jour dynamique du DOM</li>
-        <li>Gestion des erreurs réseau et des données incomplètes</li>
+        <li>fetch + async/await : les promesses en JS ça devient logique une fois qu'on pratique</li>
+        <li>MVC en JS vanilla, sans framework — ça m'a montré pourquoi les frameworks existent</li>
+        <li>Gérer une API externe qui peut changer ou tomber : ajouter des fallbacks c'est pas optionnel</li>
+        <li>Mettre à jour le DOM dynamiquement sans tout recharger</li>
       </ul>
     </div>
   </section>
@@ -61,16 +61,18 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   .container { width: 80%; margin: 0 auto; max-width: 900px; }
-  .back-link { display: inline-block; margin-bottom: 30px; color: #ffcc00; font-size: 0.95em; }
+  .back-link { display: inline-block; margin-bottom: 30px; color: var(--primary); font-size: 0.95em; font-weight: 500; transition: all 0.3s; }
+  .back-link:hover { transform: translateX(-4px); color: var(--accent); }
   .project-header { margin-bottom: 50px; }
-  .subtitle { font-size: 1.2em; color: #aaa; margin: 10px 0 20px; }
+  .subtitle { font-size: 1.2em; color: var(--dk-muted); margin: 10px 0 20px; }
   .meta { display: flex; gap: 10px; flex-wrap: wrap; }
-  .tag { background: rgba(255,204,0,0.1); color: #ffcc00; padding: 6px 14px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(255,204,0,0.3); }
-  .section { background: linear-gradient(135deg, rgba(42,42,42,0.6), rgba(30,30,30,0.6)); border-radius: 12px; padding: 30px; margin-bottom: 25px; border-left: 3px solid #ffcc00; }
-  .section h3 { margin-bottom: 15px; font-size: 1.15em; }
-  .section p, .section li { color: #ddd; line-height: 1.8; }
+  .tag { background: rgba(147,197,253,0.15); color: var(--dk-accent); padding: 6px 14px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(147,197,253,0.3); }
+  .section { background: rgba(31,41,55,0.8); border-radius: 12px; padding: 30px; margin-bottom: 25px; backdrop-filter: blur(10px); border: 1px solid rgba(147,197,253,0.2); }
+  .section h3 { margin-bottom: 15px; font-size: 1.15em; color: var(--dk-accent); }
+  .section p, .section li { color: var(--dk-text); line-height: 1.8; }
   .section ul { padding-left: 20px; }
   .section li { margin-bottom: 6px; }
   .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-  .skill-tag { background: rgba(255,204,0,0.1); color: #ffcc00; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; border: 1px solid rgba(255,204,0,0.3); }
+  .skill-tag { background: rgba(147,197,253,0.15); color: var(--dk-accent); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; border: 1px solid rgba(147,197,253,0.3); transition: all 0.2s; }
+  .skill-tag:hover { background: rgba(147,197,253,0.25); }
 </style>

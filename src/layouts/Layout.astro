@@ -1,6 +1,8 @@
 ---
 import Header from '../components/Header.astro';
+import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import ClientRouter from 'astro/components/ClientRouter.astro';
 
 interface Props {
   title?: string;
@@ -18,8 +20,10 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 		<title>{title}</title>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<ClientRouter />
 	</head>
 	<body>
+		<Navigation />
 		<Header />
 		<main>
 			<slot />
@@ -33,6 +37,8 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 
 <style is:global>
 	:root {
+		--primary: #1e40af;
+		--secondary: #10b981;
 		--surface-1: #f4f7fb;
 		--surface-2: #ffffff;
 		--text-1: #0f172a;
@@ -40,6 +46,21 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 		--accent: #2563eb;
 		--accent-soft: #dbeafe;
 		--border: #dbe3ee;
+		/* Couleurs pour fonds sombres (Header, Nav, Footer, cards glassmorphism) */
+		--dk-text: #e2e8f0;       /* texte principal sur fond sombre — 15:1 sur #0f172a */
+		--dk-muted: #94a3b8;      /* texte secondaire sur fond sombre — 7:1 sur #0f172a */
+		--dk-accent: #93c5fd;     /* bleu clair sur fond sombre — 8:1 sur #1f2937 */
+		--dk-green: #6ee7b7;      /* vert clair sur fond sombre — 9:1 sur #1f2937 */
+		--cat-width: 128px;
+		--cat-height: 72px;
+		--start-x: 0px;
+		--start-y: 0px;
+		--target-x: 0px;
+		--target-y: 0px;
+		--start-rotation: 0deg;
+		--target-rotation: 0deg;
+		--leave-rotation: 0deg;
+		--cat-wallpaper: none;
 	}
 
 	* {
@@ -76,11 +97,11 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 	}
 
 	a:hover {
-		color: #1d4ed8;
+		color: var(--accent);
 	}
 
 	h1 {
-		color: #0b1220;
+		color: var(--text-2);
 		font-size: clamp(2rem, 4vw, 3.2rem);
 		letter-spacing: -0.04em;
 	}
@@ -131,24 +152,24 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 		z-index: 1500;
 		width: 22px;
 		height: 22px;
-		border: 1px solid #64748b;
-		background: #f8fafc;
-		color: #64748b;
+		border: 1px solid rgba(30, 64, 175, 0.5);
+		background: rgba(30, 64, 175, 0.2);
+		color: var(--primary);
 		font-size: 10px;
 		border-radius: 999px;
-		opacity: 0.08;
+		opacity: 0.5;
 		cursor: pointer;
 		transition: opacity 0.2s ease, transform 0.2s ease;
 	}
 
 	.cat-trigger:hover,
 	.cat-trigger:focus-visible {
-		opacity: 0.75;
+		opacity: 1;
 		transform: scale(1.08);
 	}
 
 	.cat-trigger:focus-visible {
-		outline: 2px solid #2563eb;
+		outline: 2px solid var(--primary);
 		outline-offset: 2px;
 	}
 
@@ -183,6 +204,15 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 
 	.cat-card {
 		position: absolute;
+		--cat-width: 128px;
+		--cat-height: 72px;
+		--start-x: 0px;
+		--start-y: 0px;
+		--target-x: 0px;
+		--target-y: 0px;
+		--start-rotation: 0deg;
+		--target-rotation: 0deg;
+		--leave-rotation: 0deg;
 		width: var(--cat-width);
 		height: var(--cat-height);
 		border-radius: 10px;
@@ -215,6 +245,7 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 		--accent: #b45309;
 		--accent-soft: #fed7aa;
 		--border: rgba(180, 83, 9, 0.35);
+		--cat-wallpaper: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
 	}
 
 	body.cat-theme::before {
@@ -269,31 +300,55 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 </style>
 
 <script is:inline>
-	const trigger = document.getElementById("cat-trigger");
-	const warning = document.getElementById("cat-warning");
-	const floodLayer = document.getElementById("cat-flood-layer");
-	const body = document.body;
-	let floodRunning = false;
+(function initCat() {
+	const trigger     = document.getElementById("cat-trigger");
+	const warning     = document.getElementById("cat-warning");
+	const floodLayer  = document.getElementById("cat-flood-layer");
+	const body        = document.body;
+	if (!trigger || !warning || !floodLayer) return;
+
+	// ── Faits sur les chats ─────────────────────────────────────────
+	const catFacts = [
+		"🐱 Les chats passent 70% de leur vie à dormir.",
+		"🐱 Un chat peut sauter 6 fois sa hauteur.",
+		"🐱 Les chats ont 32 muscles dans chaque oreille.",
+		"🐱 Un groupe de chats s'appelle une 'clowder'.",
+		"🐱 Les chats font ronronner à ~25Hz — fréquence de guérison osseuse.",
+		"🐱 Le chat le plus vieux jamais enregistré avait 38 ans.",
+		"🐱 Les chats ne peuvent pas goûter le sucré.",
+		"🐱 Chaque chat a un nez unique comme les empreintes digitales.",
+		"🐱 Les chats boivent en repliant leur langue en forme de J.",
+		"🐱 Un chat a un champ de vision de 200°.",
+	];
+	const randomFact = () => catFacts[Math.floor(Math.random() * catFacts.length)];
+
+	// ── Compteur persistant ─────────────────────────────────────────
+	var catCount = parseInt(localStorage.getItem("catFloodCount") || "0", 10);
+	if (catCount >= 3) trigger.textContent = "🐾";
+
+	// ── Flood ───────────────────────────────────────────────────────
+	var floodRunning = false;
 
 	const catApi = () =>
-		`https://cataas.com/cat?width=640&height=360&fit=cover&v=${Math.floor(Math.random() * 1000000)}`;
+		"https://cataas.com/cat?width=640&height=360&fit=cover&v=" + Math.floor(Math.random() * 1000000);
 
-	const getGrid = () => {
+	const getGrid = (intensity) => {
 		const gap = 10;
 		const ratio = 640 / 360;
-		const catWidth = Math.max(128, Math.min(220, Math.floor(window.innerWidth / 5.2)));
+		const catWidth  = Math.max(128, Math.min(220, Math.floor(window.innerWidth / 5.2)));
 		const catHeight = Math.round(catWidth / ratio);
-		const cols = Math.max(1, Math.ceil(window.innerWidth / (catWidth + gap)));
-		const rows = Math.max(1, Math.ceil(window.innerHeight / (catHeight + gap)));
-		const usedWidth = cols * catWidth + (cols - 1) * gap;
-		const usedHeight = rows * catHeight + (rows - 1) * gap;
+		// intensity: 0.5 = moitié, 1 = normal, 1.5 = mega
+		const cols = Math.max(1, Math.ceil(window.innerWidth  / (catWidth  + gap) * Math.min(intensity, 1)));
+		const rows = Math.max(1, Math.ceil(window.innerHeight / (catHeight + gap) * Math.min(intensity, 1)));
+		const extraCols = intensity > 1 ? Math.ceil(cols * (intensity - 1)) : 0;
+		const extraRows = intensity > 1 ? Math.ceil(rows * (intensity - 1)) : 0;
+		const totalCols = cols + extraCols;
+		const totalRows = rows + extraRows;
+		const usedWidth  = totalCols * catWidth  + (totalCols - 1) * gap;
+		const usedHeight = totalRows * catHeight + (totalRows - 1) * gap;
 		return {
-			cols,
-			rows,
-			gap,
-			catWidth,
-			catHeight,
-			offsetX: Math.max(0, Math.floor((window.innerWidth - usedWidth) / 2)),
+			cols: totalCols, rows: totalRows, gap, catWidth, catHeight,
+			offsetX: Math.max(0, Math.floor((window.innerWidth  - usedWidth)  / 2)),
 			offsetY: Math.max(0, Math.floor((window.innerHeight - usedHeight) / 2)),
 		};
 	};
@@ -301,8 +356,7 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 	const preloadImage = (url) =>
 		new Promise((resolve) => {
 			const img = new Image();
-			img.onload = () => resolve(url);
-			img.onerror = () => resolve(url);
+			img.onload = img.onerror = () => resolve(url);
 			img.src = url;
 		});
 
@@ -311,80 +365,109 @@ const { title = "Romain Missoum - Portfolio" } = Astro.props;
 		const col = index % grid.cols;
 		const targetX = grid.offsetX + col * (grid.catWidth + grid.gap);
 		const targetY = grid.offsetY + row * (grid.catHeight + grid.gap);
-		const startX = targetX + (Math.random() * 90 - 45);
-		const startY = -1 * (150 + Math.random() * 450);
-		const startRotation = `${Math.random() * 14 - 7}deg`;
-		const targetRotation = `${Math.random() * 8 - 4}deg`;
-		const leaveRotation = `${Math.random() * 18 - 9}deg`;
+		const startX  = targetX + (Math.random() * 90 - 45);
+		const startY  = -1 * (150 + Math.random() * 450);
 		const imageUrl = catApi();
-
 		await preloadImage(imageUrl);
-
 		const card = document.createElement("img");
 		card.className = "cat-card";
 		card.alt = "";
 		card.src = imageUrl;
-		card.style.setProperty("--cat-width", `${grid.catWidth}px`);
-		card.style.setProperty("--cat-height", `${grid.catHeight}px`);
-		card.style.setProperty("--start-x", `${startX}px`);
-		card.style.setProperty("--start-y", `${startY}px`);
-		card.style.setProperty("--target-x", `${targetX}px`);
-		card.style.setProperty("--target-y", `${targetY}px`);
-		card.style.setProperty("--start-rotation", startRotation);
-		card.style.setProperty("--target-rotation", targetRotation);
-		card.style.setProperty("--leave-rotation", leaveRotation);
-		card.style.transitionDelay = `${row * 35 + col * 14}ms`;
+		card.style.setProperty("--cat-width",        grid.catWidth  + "px");
+		card.style.setProperty("--cat-height",       grid.catHeight + "px");
+		card.style.setProperty("--start-x",          startX + "px");
+		card.style.setProperty("--start-y",          startY + "px");
+		card.style.setProperty("--target-x",         targetX + "px");
+		card.style.setProperty("--target-y",         targetY + "px");
+		card.style.setProperty("--start-rotation",   (Math.random() * 14 - 7)  + "deg");
+		card.style.setProperty("--target-rotation",  (Math.random() * 8  - 4)  + "deg");
+		card.style.setProperty("--leave-rotation",   (Math.random() * 18 - 9)  + "deg");
+		card.style.transitionDelay = (row * 35 + col * 14) + "ms";
+		// Bounce au clic pendant le flood
+		card.addEventListener("click", function() {
+			this.style.transform = "scale(1.15)";
+			setTimeout(() => { this.style.transform = ""; }, 200);
+		});
 		return card;
 	};
 
 	const runCatFlood = async () => {
-		if (floodRunning) {
-			return;
-		}
-
+		if (floodRunning) return;
 		floodRunning = true;
 		trigger.disabled = true;
+
+					// Intensité selon le nombre de fois joué
+					catCount++;
+					localStorage.setItem("catFloodCount", catCount);
+
+					// Si on atteint la 4ème activation, ouvrir la page chat au lieu du flood
+					if (catCount >= 4) {
+					  // conserver le compteur et rediriger
+					  localStorage.setItem("catFloodCount", String(catCount));
+					  // légère animation/retour visuel avant nav
+					  warning.hidden = false;
+					  warning.textContent = "Ouvrir le chat secret...";
+					  setTimeout(() => { window.location.href = '/chat'; }, 450);
+					  return;
+					}
+
+					const intensity = catCount === 1 ? 0.55 : catCount === 2 ? 1 : 1.4;
+					const label     = catCount === 1 ? "Cat flood incoming..." : catCount === 2 ? "Cat flood x2 !!" : "🚨 MEGA CAT FLOOD 🚨";
+
 		warning.hidden = false;
-		warning.textContent = "Cat flood incoming...";
+		warning.textContent = label;
 		floodLayer.replaceChildren();
 
-		const grid = getGrid();
+		const grid  = getGrid(intensity);
 		const count = grid.rows * grid.cols;
 		const cards = await Promise.all(
-			Array.from({ length: count }, (_, index) => buildCatCard(index, grid))
+			Array.from({ length: count }, (_, i) => buildCatCard(i, grid))
 		);
-
-		if (!floodRunning) {
-			return;
-		}
+		if (!floodRunning) return;
 
 		floodLayer.replaceChildren(...cards);
 		requestAnimationFrame(() => {
-			for (const card of cards) {
-				card.classList.add("landing");
-			}
+			for (const card of cards) card.classList.add("landing");
 		});
 
-		const maxLandingDelay = ((grid.rows - 1) * 35) + ((grid.cols - 1) * 14);
-		const landingTime = 820 + maxLandingDelay;
+		const maxDelay   = (grid.rows - 1) * 35 + (grid.cols - 1) * 14;
+		const landTime   = 820 + maxDelay;
+		const restTime   = 2800;
 
 		setTimeout(() => {
+			// Afficher un fait de chat pendant le repos
+			warning.textContent = randomFact();
 			body.classList.add("cat-theme");
-			body.style.setProperty("--cat-wallpaper", `url("${catApi()}")`);
-			for (const card of cards) {
-				card.classList.add("leaving");
-			}
-		}, landingTime);
+			body.style.setProperty("--cat-wallpaper", 'url("' + catApi() + '")');
+			for (const card of cards) { card.classList.remove("landing"); card.classList.add("landed"); }
+			if (catCount >= 3) trigger.textContent = "🐾";
+		}, landTime);
+
+		setTimeout(() => {
+			for (const card of cards) card.classList.add("leaving");
+		}, landTime + restTime);
 
 		setTimeout(() => {
 			floodLayer.replaceChildren();
+			body.classList.remove("cat-theme");
 			warning.hidden = true;
 			trigger.disabled = false;
 			floodRunning = false;
-		}, landingTime + 900);
+		}, landTime + restTime + 1000);
 	};
 
-	if (trigger && warning && floodLayer) {
-		trigger.addEventListener("click", runCatFlood);
-	}
+	trigger.addEventListener("click", runCatFlood);
+
+	// ── Konami Code ─────────────────────────────────────────────────
+	var konamiSeq = [];
+	var konamiCode = [38,38,40,40,37,39,37,39,66,65]; // ↑↑↓↓←→←→BA
+	document.addEventListener("keydown", function(e) {
+		konamiSeq.push(e.keyCode);
+		if (konamiSeq.length > konamiCode.length) konamiSeq.shift();
+		if (konamiSeq.join(",") === konamiCode.join(",")) {
+			konamiSeq = [];
+			runCatFlood();
+		}
+	});
+})();
 </script>

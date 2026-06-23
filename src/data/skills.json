@@ -5,22 +5,18 @@
   },
   {
     "category": "Front-end",
-    "skills": ["Angular", "HTML", "CSS", "JavaScript", "Twig"]
+    "skills": ["HTML", "CSS", "JavaScript", "TypeScript", "Angular", "Twig"]
   },
   {
     "category": "Bases de données",
     "skills": ["PostgreSQL", "MySQL", "XML"]
   },
   {
-    "category": "Outils & IDE",
-    "skills": ["Git", "GitLab", "VS Code", "IntelliJ IDEA", "SceneBuilder", "Draw.io", "Jira"]
+    "category": "Outils & Environnement",
+    "skills": ["Git", "GitLab", "VS Code", "IntelliJ IDEA", "SceneBuilder", "Draw.io", "Jira", "VirtualBox", "Linux / Debian", "DBeaver", "Bruno"]
   },
   {
     "category": "Compétences transversales",
     "skills": ["Travail en équipe", "Autonomie", "Apprentissage rapide", "Documentation technique", "Méthode agile", "Anglais technique"]
-  },
-  {
-    "category": "Systèmes & Outils",
-    "skills": ["Git", "GitLab", "VS Code", "IntelliJ IDEA", "SceneBuilder", "Draw.io", "Jira", "VirtualBox", "Installation Linux/Debian"]
   }
 ]

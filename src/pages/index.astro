@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Romain Missoum - Portfolio">
 	<section id="cta" class="container cta-section">
 		<div class="cta-content">
-			<p class="cta-text">Passionné par la programmation et les défis informatiques</p>
+			<p class="cta-text">Étudiant en BUT Informatique, j'apprends en faisant — projets académiques, IA locale et tout ce qui me tombe sous la main</p>
 			<div class="cta-buttons">
 				<a href="/about" class="btn btn-primary">En savoir plus →</a>
 				<a href="/projects" class="btn btn-secondary">Voir mes projets →</a>
@@ -43,22 +43,23 @@ import Layout from '../layouts/Layout.astro';
 		<h2>Projet Récent</h2>
 		<div class="featured-project">
 			<div class="project-content">
-				<h3>Installation d'une machine virtuelle Debian 12</h3>
-				<p>Création d'un tutoriel complet en anglais pour guider l'installation et la configuration d'une machine virtuelle Debian 12.</p>
+				<h3>Zenior — Application web pour aidants familiaux</h3>
+				<p>Application web développée en équipe de 5 dans le cadre du BUT2. Gestion de rendez-vous, contacts et tâches pour les aidants. Stack PHP/Symfony, avec Jira pour le suivi agile et respect du RGPD.</p>
 				<div class="skills-list">
-					<span class="skill-tag">Administration Système</span>
-					<span class="skill-tag">Documentation</span>
-					<span class="skill-tag">Anglais</span>
+					<span class="skill-tag">PHP / Symfony</span>
+					<span class="skill-tag">SQL</span>
+					<span class="skill-tag">JavaScript</span>
+					<span class="skill-tag">Jira</span>
+					<span class="skill-tag">GitLab</span>
 				</div>
-				<a href="/projects" class="btn btn-secondary">Voir tous les projets →</a>
+				<a href="/zenior" class="btn btn-secondary">Voir le projet →</a>
 			</div>
 		</div>
 	</section>
 
 	<section id="cta-bottom" class="container cta-section-bottom">
-		<h2>Prêt à collaborer ?</h2>
-		<p>Je suis à la recherche d'opportunités pour développer mes compétences et contribuer à des projets innovants.</p>
-		<a href="/contact" class="btn btn-primary">Me contacter</a>
+		<h2>Disponible pour collaborations</h2>
+		<p>Actuellement en stage — ouvert aux collaborations ponctuelles, projets et échanges. Contactez-moi via LinkedIn ou GitHub.</p>
 	</section>
 </Layout>
 
@@ -69,16 +70,16 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.cta-content {
-		background: linear-gradient(135deg, rgba(255, 204, 0, 0.1) 0%, rgba(255, 149, 0, 0.05) 100%);
+		background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
 		padding: 50px 40px;
 		border-radius: 12px;
-		border: 2px solid rgba(255, 204, 0, 0.3);
+		border: 2px solid rgba(30, 64, 175, 0.3);
 		backdrop-filter: blur(10px);
 	}
 
 	.cta-text {
 		font-size: 1.6em;
-		color: #ffcc00;
+		color: var(--primary);
 		margin-bottom: 30px;
 		font-weight: 500;
 		letter-spacing: 0.5px;
@@ -102,24 +103,26 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.btn-primary {
-		background: linear-gradient(135deg, #ffcc00, #ff9500);
-		color: #121212;
+		background: linear-gradient(135deg, var(--primary), #1d4ed8);
+		color: #ffffff;
 	}
 
 	.btn-primary:hover {
 		transform: translateY(-3px);
-		box-shadow: 0 10px 30px rgba(255, 204, 0, 0.4);
+		box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
 	}
 
 	.btn-secondary {
 		background: transparent;
-		color: #ffcc00;
-		border: 2px solid #ffcc00;
+		color: var(--primary);
+		border: 2px solid var(--primary);
 	}
 
 	.btn-secondary:hover {
-		background: rgba(255, 204, 0, 0.1);
+		background: rgba(30, 64, 175, 0.1);
 		transform: translateY(-3px);
+		border-color: var(--primary);
+		color: var(--primary);
 	}
 
 	.highlights {
@@ -134,19 +137,19 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.highlight-card {
-		background: linear-gradient(135deg, rgba(42, 42, 42, 0.6) 0%, rgba(30, 30, 30, 0.6) 100%);
+		background: linear-gradient(135deg, rgba(31, 41, 55, 0.6) 0%, rgba(17, 24, 39, 0.6) 100%);
 		padding: 30px;
 		border-radius: 12px;
 		text-align: center;
 		transition: all 0.3s ease;
-		border: 2px solid transparent;
+		border: 1px solid rgba(30, 64, 175, 0.2);
 		backdrop-filter: blur(10px);
 	}
 
 	.highlight-card:hover {
 		transform: translateY(-10px);
-		border-color: #ffcc00;
-		box-shadow: 0 15px 40px rgba(255, 204, 0, 0.15);
+		border-color: var(--primary);
+		box-shadow: 0 15px 40px rgba(30, 64, 175, 0.25);
 	}
 
 	.highlight-card .icon {
@@ -157,11 +160,11 @@ import Layout from '../layouts/Layout.astro';
 	.highlight-card h3 {
 		font-size: 1.25em;
 		margin-bottom: 10px;
-		color: #ffcc00;
+		color: var(--dk-accent);
 	}
 
 	.highlight-card p {
-		color: #aaa;
+		color: var(--dk-muted);
 		line-height: 1.6;
 	}
 
@@ -170,10 +173,10 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.featured-project {
-		background: linear-gradient(135deg, rgba(255, 204, 0, 0.1) 0%, rgba(255, 149, 0, 0.05) 100%);
+		background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
 		padding: 40px;
 		border-radius: 12px;
-		border: 2px solid rgba(255, 204, 0, 0.3);
+		border: 2px solid rgba(30, 64, 175, 0.3);
 		backdrop-filter: blur(10px);
 		max-width: 800px;
 		margin: 0 auto;
@@ -181,12 +184,12 @@ import Layout from '../layouts/Layout.astro';
 
 	.project-content h3 {
 		font-size: 1.5em;
-		color: #ffcc00;
+		color: var(--primary);
 		margin-bottom: 15px;
 	}
 
 	.project-content p {
-		color: #ddd;
+		color: var(--text-2);
 		line-height: 1.8;
 		margin-bottom: 20px;
 	}
@@ -199,20 +202,20 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.skill-tag {
-		background: rgba(255, 204, 0, 0.1);
-		color: #ffcc00;
+		background: rgba(30, 64, 175, 0.1);
+		color: var(--primary);
 		padding: 8px 15px;
 		border-radius: 20px;
 		font-size: 0.9em;
-		border: 1px solid rgba(255, 204, 0, 0.3);
+		border: 1px solid rgba(30, 64, 175, 0.3);
 	}
 
 	.cta-section-bottom {
 		text-align: center;
-		background: linear-gradient(135deg, rgba(255, 204, 0, 0.1) 0%, rgba(255, 149, 0, 0.05) 100%);
+		background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
 		padding: 60px 40px;
 		border-radius: 12px;
-		border: 2px solid rgba(255, 204, 0, 0.3);
+		border: 2px solid rgba(30, 64, 175, 0.3);
 		margin-bottom: 40px;
 		backdrop-filter: blur(10px);
 	}
@@ -223,7 +226,7 @@ import Layout from '../layouts/Layout.astro';
 
 	.cta-section-bottom p {
 		font-size: 1.15em;
-		color: #ddd;
+		color: var(--text-2);
 		margin-bottom: 30px;
 		max-width: 600px;
 		margin-left: auto;

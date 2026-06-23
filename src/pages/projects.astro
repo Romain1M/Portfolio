@@ -14,6 +14,9 @@ import projectsData from '../data/projects.json';
         projectsData.map(project => (
           <ProjectCard
             title={project.title}
+            subtitle={project.subtitle}
+            period={project.period}
+            context={project.context}
             description={project.description}
             skills={project.skills}
             link={project.link}

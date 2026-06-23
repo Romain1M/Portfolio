@@ -18,31 +18,31 @@ import Layout from '../layouts/Layout.astro';
 
     <div class="section">
       <h3>Description</h3>
-      <p>Application web destinée à accompagner les aidants familiaux dans la gestion quotidienne de leurs proches dépendants : suivi des rendez-vous, gestion des contacts et des tâches, interface simple et accessible.</p>
+      <p>Application web pour aider les aidants familiaux à gérer le quotidien de leurs proches : suivi des rendez-vous, contacts, tâches. Le but c'était de faire quelque chose de vraiment simple à utiliser pour des gens qui ne sont pas forcément à l'aise avec le numérique.</p>
     </div>
 
     <div class="section">
-      <h3>Objectifs</h3>
+      <h3>Ce qu'on devait faire</h3>
       <ul>
-        <li>Développer une application web complète avec PHP/Symfony</li>
-        <li>Concevoir et gérer des bases de données relationnelles</li>
-        <li>Respecter les contraintes réglementaires (RGPD)</li>
-        <li>Utiliser des outils de gestion de projet professionnels (Jira, GitLab)</li>
+        <li>Construire une appli web complète avec PHP/Symfony</li>
+        <li>Gérer une base de données relationnelle</li>
+        <li>Prendre en compte les contraintes RGPD (données sensibles des personnes âgées)</li>
+        <li>Utiliser Jira et GitLab comme sur un vrai projet pro</li>
       </ul>
     </div>
 
     <div class="section">
-      <h3>👥 Travail en groupe</h3>
-      <p>Projet réalisé en équipe de 5, avec organisation agile via Jira (épics, user stories, sprints). Revues de code sur GitLab et démonstrations client toutes les 2 semaines.</p>
+      <h3>👥 L'équipe</h3>
+      <p>On était 5. Organisation en sprints avec Jira, revues de code sur GitLab, et une démo toutes les 2 semaines. C'est là que j'ai vraiment compris à quoi sert une bonne organisation — parce que quand ça déborde, ça déborde pour tout le monde.</p>
     </div>
 
     <div class="section">
-      <h3>🙋 Contribution individuelle</h3>
+      <h3>🙋 Ce que j'ai fait</h3>
       <ul>
-        <li>Développement back-end : contrôleurs Symfony, logique métier, services</li>
-        <li>Conception et manipulation de la base de données (migrations, requêtes SQL)</li>
-        <li>Intégration des contraintes RGPD dans la gestion des données personnelles</li>
-        <li>Participation aux revues de sprint et rédaction de documentation</li>
+        <li>Back-end Symfony : contrôleurs, services, logique métier</li>
+        <li>Base de données : migrations, requêtes SQL, relations entre entités</li>
+        <li>Intégration des règles RGPD pour les données des bénéficiaires</li>
+        <li>Participation aux sprints + rédaction de la doc pour mon équipe</li>
       </ul>
     </div>
 
@@ -60,12 +60,12 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <div class="section">
-      <h3>Savoirs acquis</h3>
+      <h3>Ce que j'ai appris</h3>
       <ul>
-        <li>Framework Symfony : routing, contrôleurs, services, formulaires</li>
-        <li>Gestion de projet agile avec Jira</li>
-        <li>Contraintes RGPD et protection des données personnelles</li>
-        <li>Développement en équipe avec GitLab (branches, merge requests, CI)</li>
+        <li>Symfony en profondeur : routing, contrôleurs, services, formulaires — c'était ma première vraie appli avec ce framework</li>
+        <li>Gérer un projet agile avec Jira sur 5 mois, c'est différent d'un projet de 3 semaines</li>
+        <li>Le RGPD c'est pas juste une case à cocher, ça change vraiment comment on structure les données</li>
+        <li>Les merge requests sur GitLab font gagner du temps même quand elles semblent ralentir</li>
       </ul>
     </div>
   </section>
@@ -73,16 +73,18 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   .container { width: 80%; margin: 0 auto; max-width: 900px; }
-  .back-link { display: inline-block; margin-bottom: 30px; color: #ffcc00; font-size: 0.95em; }
+  .back-link { display: inline-block; margin-bottom: 30px; color: var(--primary); font-size: 0.95em; font-weight: 500; transition: all 0.3s; }
+  .back-link:hover { transform: translateX(-4px); color: var(--accent); }
   .project-header { margin-bottom: 50px; }
-  .subtitle { font-size: 1.2em; color: #aaa; margin: 10px 0 20px; }
+  .subtitle { font-size: 1.2em; color: var(--dk-muted); margin: 10px 0 20px; }
   .meta { display: flex; gap: 10px; flex-wrap: wrap; }
-  .tag { background: rgba(255,204,0,0.1); color: #ffcc00; padding: 6px 14px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(255,204,0,0.3); }
-  .section { background: linear-gradient(135deg, rgba(42,42,42,0.6), rgba(30,30,30,0.6)); border-radius: 12px; padding: 30px; margin-bottom: 25px; border-left: 3px solid #ffcc00; }
-  .section h3 { margin-bottom: 15px; font-size: 1.15em; }
-  .section p, .section li { color: #ddd; line-height: 1.8; }
+  .tag { background: rgba(147,197,253,0.15); color: var(--dk-accent); padding: 6px 14px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(147,197,253,0.3); }
+  .section { background: rgba(31,41,55,0.8); border-radius: 12px; padding: 30px; margin-bottom: 25px; backdrop-filter: blur(10px); border: 1px solid rgba(147,197,253,0.2); }
+  .section h3 { margin-bottom: 15px; font-size: 1.15em; color: var(--dk-accent); }
+  .section p, .section li { color: var(--dk-text); line-height: 1.8; }
   .section ul { padding-left: 20px; }
   .section li { margin-bottom: 6px; }
   .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-  .skill-tag { background: rgba(255,204,0,0.1); color: #ffcc00; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; border: 1px solid rgba(255,204,0,0.3); }
+  .skill-tag { background: rgba(147,197,253,0.15); color: var(--dk-accent); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; border: 1px solid rgba(147,197,253,0.3); transition: all 0.2s; }
+  .skill-tag:hover { background: rgba(147,197,253,0.25); }
 </style>
