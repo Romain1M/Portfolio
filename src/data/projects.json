@@ -8,7 +8,7 @@
     "description": "Développement d'une application Java de gestion d'événements médiévaux, réalisée en équipe avec une architecture orientée objet, une base de données relationnelle et un workflow GitLab type agile.",
     "skills": ["Java", "JavaFX", "SQL", "XML", "GitLab"],
     "tools": ["IntelliJ IDEA", "GitLab", "SceneBuilder"],
-    "link": "/medievent"
+    "link": "./medievent"
   },
   {
     "slug": "zenior",
@@ -19,7 +19,7 @@
     "description": "Développement d'une application web pour accompagner les aidants dans la gestion du quotidien. Projet réalisé en équipe avec PHP/Symfony, gestion Jira et sensibilisation au RGPD.",
     "skills": ["PHP", "Symfony", "SQL", "JavaScript", "GitLab", "Jira"],
     "tools": ["VS Code", "GitLab", "Jira"],
-    "link": "/zenior"
+    "link": "./zenior"
   },
   {
     "slug": "free-game-tracker",
@@ -30,7 +30,7 @@
     "description": "Application JavaScript consommant des API REST pour agréger et filtrer les offres de jeux gratuits disponibles sur différentes plateformes, organisée en architecture MVC.",
     "skills": ["JavaScript", "HTML/CSS", "API REST"],
     "tools": ["VS Code"],
-    "link": "/free-game-tracker"
+    "link": "./free-game-tracker"
   },
   {
     "slug": "debian",
@@ -41,6 +41,6 @@
     "description": "Création d'un tutoriel complet en anglais pour guider l'installation et la configuration d'une machine virtuelle Debian 12.",
     "skills": ["Administration Système", "Documentation technique", "Anglais"],
     "tools": ["VirtualBox"],
-    "link": "/debian"
+    "link": "./debian"
   }
 ]
