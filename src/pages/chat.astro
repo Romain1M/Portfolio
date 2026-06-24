@@ -1,0 +1,225 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Chat secret">
+  <section class="container chat-page">
+    <h2>Chat secret 🐾</h2>
+    <p class="lead">Bienvenue — chat local & mini-jeu "Nourris le chat". Basculer de mode pour jouer.</p>
+
+    <div class="controls">
+      <label class="mode-toggle">
+        <input type="radio" name="mode" value="chat" checked /> Chat
+      </label>
+      <label class="mode-toggle">
+        <input type="radio" name="mode" value="game" /> Jeu
+      </label>
+      <div class="game-info" id="gameInfo">Score: <strong id="gameScore">0</strong></div>
+    </div>
+
+    <div class="chat-window" id="chatWindow" aria-live="polite"></div>
+
+    <!-- Chat form (visible en mode chat) -->
+    <form id="chatForm" class="chat-form" on:submit preventDefault>
+      <input id="chatInput" placeholder="Écris quelque chose..." autocomplete="off" />
+      <button type="submit">Envoyer</button>
+    </form>
+
+    <!-- Game controls (visible en mode game) -->
+    <div class="game-panel" id="gamePanel" hidden>
+      <div class="cat-avatar">🐱</div>
+      <button id="feedBtn" class="feed-btn">Nourrir 🥫</button>
+      <div class="achievements" id="achievements"></div>
+    </div>
+
+    <p class="note">Ce chat et ce jeu sont locaux : tout reste dans ton navigateur.</p>
+  </section>
+</Layout>
+
+<style>
+  .chat-page { max-width: 820px; margin: 40px auto; }
+  .lead { color: var(--text-2); margin-bottom: 12px; }
+  .controls { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .mode-toggle { font-size:0.95em; color:var(--text-2); }
+  .mode-toggle input { margin-right:6px; }
+  .game-info { margin-left:auto; color:var(--text-2); }
+  .chat-window { min-height: 320px; background: rgba(31,41,55,0.85); border-radius: 12px; padding: 16px; color: var(--dk-text); overflow:auto; border:1px solid rgba(147,197,253,0.12);}
+  .msg { margin-bottom: 12px; }
+  .msg.me { text-align: right; }
+  .msg .bubble { display:inline-block; padding:8px 12px; border-radius:12px; max-width:78%; }
+  .msg.me .bubble { background: linear-gradient(90deg,#1e40af,#2563eb); color:#fff; }
+  .msg.bot .bubble { background: rgba(147,197,253,0.12); color:var(--dk-text); }
+  .chat-form { display:flex; gap:8px; margin-top:12px; }
+  .chat-form input { flex:1; padding:10px 12px; border-radius:8px; border:1px solid var(--border); background:var(--surface-2); }
+  .chat-form button { padding:10px 14px; border-radius:8px; border:none; background:linear-gradient(90deg,var(--primary),#1d4ed8); color:#fff; cursor:pointer; }
+  .game-panel { margin-top:12px; display:flex; align-items:center; gap:12px; }
+  .cat-avatar { font-size:2.1rem; }
+  .feed-btn { padding:10px 14px; border-radius:8px; border:1px solid rgba(147,197,253,0.2); background:#0b1220; color:#fff; cursor:pointer; }
+  .achievements { color:var(--text-2); font-size:0.9em; }
+  .note { margin-top:12px; color:var(--text-2); font-size:0.9em; }
+  /* kibble animation */
+  .kibble { position:fixed; width:36px; height:36px; display:flex; align-items:center; justify-content:center; font-size:20px; pointer-events:none; transform:translate(0,0) scale(1); transition:transform 0.9s cubic-bezier(.2,.9,.3,1), opacity 0.6s ease; opacity:0; z-index:99999; }
+  /* badge modal */
+  .badge-modal { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(2,6,23,0.6); z-index:100000; }
+  .badge-box { background:var(--surface-2); padding:18px 22px; border-radius:12px; text-align:center; color:var(--text-1); min-width:260px; }
+  .badge-name { margin:12px 0; font-weight:700; }
+  .badge-box button { margin:6px; padding:8px 12px; border-radius:8px; cursor:pointer; }
+</style>
+
+<script is:inline>
+(function(){
+  const chatWindow = document.getElementById('chatWindow');
+  const chatForm = document.getElementById('chatForm');
+  const chatInput = document.getElementById('chatInput');
+  if(!chatWindow||!chatForm||!chatInput) return;
+
+  const facts = [
+    "Les chats passent 70% de leur vie à dormir.",
+    "Un chat peut sauter 6 fois sa hauteur.",
+    "Les chats ne perçoivent pas le goût sucré.",
+    "Chaque chat a un nez unique comme une empreinte digitale.",
+  ];
+
+  function append(author, text){
+    const div = document.createElement('div');
+    div.className = 'msg ' + (author==='me' ? 'me' : 'bot');
+    const span = document.createElement('span');
+    span.className='bubble';
+    span.textContent = text;
+    div.appendChild(span);
+    chatWindow.appendChild(div);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+
+  function botReply(input){
+    const s = input.trim().toLowerCase();
+    if(!s) return 'Parle un peu plus fort, stp.';
+    if(s.includes('meow')||s.includes('miaou')||s.includes('chat')) return facts[Math.floor(Math.random()*facts.length)];
+    if(s.endsWith('?')) return "Bonne question — je suis juste un bot local, mais j'aime les chats.";
+    return "Je répète : " + input;
+  }
+
+  chatForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const val = chatInput.value || '';
+    if(!val.trim()) return;
+    append('me', val);
+    chatInput.value = '';
+    setTimeout(()=>{ append('bot', botReply(val)); }, 450 + Math.random()*400);
+  });
+
+  // -- Game & UI elements
+  const modeInputs = document.querySelectorAll('input[name="mode"]');
+  const gamePanel = document.getElementById('gamePanel');
+  const gameScoreEl = document.getElementById('gameScore');
+  const feedBtn = document.getElementById('feedBtn');
+  const achievementsEl = document.getElementById('achievements');
+  const leaderboardEl = document.createElement('div');
+
+  let score = parseInt(localStorage.getItem('catGameScore')||'0',10);
+  gameScoreEl.textContent = String(score);
+
+  function setMode(mode){
+    if(mode === 'game'){
+      gamePanel.hidden = false;
+      chatForm.hidden = true;
+    } else {
+      gamePanel.hidden = true;
+      chatForm.hidden = false;
+    }
+  }
+  modeInputs.forEach(i => i.addEventListener('change', () => setMode(i.value)));
+
+  // leaderboard helpers
+  function readLeaderboard(){
+    return JSON.parse(localStorage.getItem('catLeaderboard')||'[]');
+  }
+  function writeLeaderboard(list){
+    localStorage.setItem('catLeaderboard', JSON.stringify(list));
+  }
+  function updateLeaderboardWith(score){
+    const list = readLeaderboard();
+    list.push({score: score, date: new Date().toISOString()});
+    list.sort((a,b)=>b.score-a.score);
+    if(list.length>10) list.length=10;
+    writeLeaderboard(list);
+    renderLeaderboard();
+  }
+  function renderLeaderboard(){
+    const list = readLeaderboard();
+    leaderboardEl.innerHTML = '<h4>Top scores</h4>' + (list.length? '<ol>'+list.map(i=>`<li>${i.score} — ${new Date(i.date).toLocaleString()}</li>`).join('')+'</ol>' : '<p>Pas encore de score</p>');
+  }
+
+  // export leaderboard JSON
+  function exportLeaderboard(){
+    const list = readLeaderboard();
+    const data = 'data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(list, null, 2));
+    const a = document.createElement('a');
+    a.href = data; a.download = 'leaderboard.json'; document.body.appendChild(a); a.click(); a.remove();
+  }
+
+  // add UI node
+  leaderboardEl.id = 'leaderboard'; leaderboardEl.style.marginTop='12px';
+  const exportBtn = document.createElement('button'); exportBtn.textContent='Exporter leaderboard'; exportBtn.style.marginLeft='8px';
+  exportBtn.addEventListener('click', exportLeaderboard);
+  leaderboardEl.appendChild(exportBtn);
+  document.querySelector('.chat-page').appendChild(leaderboardEl);
+  renderLeaderboard();
+
+  // animations: kibble flying from button to avatar
+  function animateKibble(fromEl, toEl){
+    const kib = document.createElement('div');
+    kib.className = 'kibble'; kib.textContent='🥫';
+    document.body.appendChild(kib);
+    const from = fromEl.getBoundingClientRect();
+    const to = toEl.getBoundingClientRect();
+    kib.style.left = (from.left + from.width/2) + 'px';
+    kib.style.top  = (from.top + from.height/2) + 'px';
+    // force reflow
+    kib.getBoundingClientRect();
+    kib.style.transform = `translate(${to.left - from.left}px, ${to.top - from.top}px) scale(0.6)`;
+    kib.style.opacity = '1';
+    setTimeout(()=>{ kib.style.opacity='0'; kib.remove(); }, 900);
+  }
+
+  // badge modal generator + download as image
+  function showBadge(name){
+    const modal = document.createElement('div'); modal.className='badge-modal';
+    modal.innerHTML = `<div class="badge-box"><h3>Badge débloqué</h3><div class="badge-name">${name}</div><button class="download-badge">Télécharger le badge</button><button class="close-badge">Fermer</button></div>`;
+    document.body.appendChild(modal);
+    modal.querySelector('.close-badge').addEventListener('click', ()=> modal.remove());
+    modal.querySelector('.download-badge').addEventListener('click', ()=> downloadBadgeImage(name));
+  }
+
+  function downloadBadgeImage(name){
+    const canvas = document.createElement('canvas'); canvas.width=512; canvas.height=256;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle='#0b1220'; ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='#fff'; ctx.font='36px sans-serif'; ctx.fillText('🏅', 30, 80);
+    ctx.font='24px sans-serif'; ctx.fillText(name, 120, 90);
+    const a = document.createElement('a'); a.href = canvas.toDataURL('image/png'); a.download = name.replace(/\s+/g,'_') + '.png'; document.body.appendChild(a); a.click(); a.remove();
+  }
+
+  // Feed action: animation, score, badges, leaderboard update
+  const avatar = document.querySelector('.cat-avatar');
+  feedBtn.addEventListener('click', function(){
+    if(avatar) animateKibble(feedBtn, avatar);
+    score += 1;
+    localStorage.setItem('catGameScore', String(score));
+    gameScoreEl.textContent = String(score);
+    append('bot', 'Tu as nourri le chat ! +1');
+    // achievements & modal
+    if(score === 10) { achievementsEl.textContent='Dresseur débutant'; showBadge('Dresseur débutant (10)'); }
+    if(score === 25) { achievementsEl.textContent='Maître croquette'; showBadge('Maître croquette (25)'); }
+    if(score === 50) { achievementsEl.textContent='Dieu des pâtées'; showBadge('Dieu des pâtées (50)'); }
+    // update leaderboard with current score
+    updateLeaderboardWith(score);
+  });
+
+  // Accueil: message initial
+  append('bot', "Salut — c'est le chat secret. Essaie 'miaou' ou bascule en mode Jeu.");
+})();
+</script>
+
+
+
