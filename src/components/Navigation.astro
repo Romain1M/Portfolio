@@ -1,9 +1,9 @@
 ---
 const links = [
-  { name: "Accueil", href: "./" },
-  { name: "À propos", href: "./about" },
-  { name: "Compétences", href: "./skills" },
-  { name: "Projets", href: "./projects" },
+  { name: "Accueil", href: "Portfolio/" },
+  { name: "À propos", href: "Portfolio/about" },
+  { name: "Compétences", href: "Portfolio/skills" },
+  { name: "Projets", href: "Portfolio/projects" },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -12,7 +12,7 @@ const currentPath = Astro.url.pathname;
 <nav class="navbar">
   <div class="nav-container">
     <div class="nav-brand">
-      <a href="./">RM</a>
+      <a href="Portfolio/">RM</a>
     </div>
 
     <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
